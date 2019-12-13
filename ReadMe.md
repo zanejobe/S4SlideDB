@@ -1,5 +1,7 @@
 <img src="https://offtheshelfedge.files.wordpress.com/2015/02/submarine-landslide-japan-yamamoto-1.jpg?w=300" title="Underwater Landslide" alt="An outcrop of an ancient underwater landslide"></a>
 
+<img src="https://sites.google.com/a/utexas.edu/s4slide/_/rsrc/1427127385050/config/customLogo.gif?revision=10" ></a>
+
 # S4SlideDB : Underwater Landslides Database
 
 > To create a new interactive website for the storage, visualization, and analysis of underwater landslide dimensions (also known as subaqueous landslides, mass transport deposits, slumps, slides, debris flows)
