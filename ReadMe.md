@@ -14,7 +14,7 @@ https://docs.google.com/presentation/d/1hrxL_wvtDWWL8yOhDuUMt4J_Qua39owmmJgzqqn-
 
 ## Team
 
-| <a href="https://github.com/zanejobe" target="_blank">**Zane Jobe**</a> | <a href="https://github.com/jetthyliao" target="_blank">**Jessy Liao**</a> | <a href="http://fvcproductions.com" target="_blank">**Eric Klatzco**</a> |
+| **Zane Jobe**</a> | **Jessy Liao**</a> | **Eric Klatzco**</a> |
 | :---: |:---:| :---:|
 | [![Zane Jobe](https://avatars0.githubusercontent.com/u/37050801?s=200)](https://github.com/zanejobe)    | [![Jessy Liao](https://avatars0.githubusercontent.com/u/31642595?s=200)](https://github.com/jetthyliao) | [![Eric Klatzco](https://avatars1.githubusercontent.com/u/4284691?v=3&s=200)](http://fvcproductions.com)  |
 | <a href="https://github.com/zanejobe" target="_blank">`github.com/zanejobe`</a> | <a href="https://github.com/jetthyliao" target="_blank">`github.com/jetthyliao`</a> | <a href="http://github.com/fvcproductions" target="_blank">`github.com/fvcproductions`</a> |
