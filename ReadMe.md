@@ -1,19 +1,29 @@
-<a href="http://fvcproductions.com"><img src="https://avatars1.githubusercontent.com/u/4284691?v=3&s=200" title="FVCproductions" alt="FVCproductions"></a>
-
-<!-- [![FVCproductions](https://avatars1.githubusercontent.com/u/4284691?v=3&s=200)](http://fvcproductions.com) -->
-
-***INSERT GRAPHIC HERE (include hyperlink in image)***
+<img src="https://offtheshelfedge.files.wordpress.com/2015/02/submarine-landslide-japan-yamamoto-1.jpg?w=300" title="Underwater Landslide" alt="An outcrop of an ancient underwater landslide"></a>
 
 # S4SlideDB : Underwater Landslides Database
 
-> Subtitle or Short Description Goes Here
+> To create a new interactive website for the storage, visualization, and analysis of underwater landslide dimensions (also known as subaqueous landslides, mass transport deposits, slumps, slides, debris flows)
 
-> ideally one sentence
+## Wireframe website
+https://docs.google.com/presentation/d/1hrxL_wvtDWWL8yOhDuUMt4J_Qua39owmmJgzqqn-J-E/edit?usp=sharing
 
-> include terms/tags that can be searched
+## Pertinent links
+- https://www.slidesdublin2020.com
+- https://sites.google.com/a/utexas.edu/s4slide/
+- This project sponsored by ESIP https://www.esipfed.org
 
+## Team
 
-# Other stuff for later... (template from fvcproductions)
+| <a href="https://github.com/zanejobe" target="_blank">**Zane Jobe**</a> | <a href="https://github.com/jetthyliao" target="_blank">**Jessy Liao**</a> | <a href="http://fvcproductions.com" target="_blank">**Eric Klatzco**</a> |
+| :---: |:---:| :---:|
+| [![Zane Jobe](https://avatars0.githubusercontent.com/u/37050801?s=200)](https://github.com/zanejobe)    | [![Jessy Liao](https://avatars0.githubusercontent.com/u/31642595?s=200)](https://github.com/jetthyliao) | [![Eric Klatzco](https://avatars1.githubusercontent.com/u/4284691?v=3&s=200)](http://fvcproductions.com)  |
+| <a href="https://github.com/zanejobe" target="_blank">`github.com/zanejobe`</a> | <a href="https://github.com/jetthyliao" target="_blank">`github.com/jetthyliao`</a> | <a href="http://github.com/fvcproductions" target="_blank">`github.com/fvcproductions`</a> |
+
+- You can just grab their GitHub profile image URL
+- You should probably resize their picture using `?s=200` at the end of the image URL.
+
+---
+# Other stuff for later... (copied this ReadMe template from fvcproductions)
 
 **Badges will go here**
 
@@ -24,9 +34,6 @@
 
 - For more on these wonderful ~~badgers~~ badges, refer to <a href="http://badges.github.io/badgerbadgerbadger/" target="_blank">`badgerbadgerbadger`</a>.
 
-***INSERT ANOTHER GRAPHIC HERE***
-
-[![INSERT YOUR GRAPHIC HERE](http://i.imgur.com/dt8AUb6.png)]()
 
 - Most people will glance at your `README`, *maybe* star it, and leave
 - Ergo, people should understand instantly what your project is about based on your repo
@@ -63,7 +70,6 @@
 - [FAQ](#faq)
 - [Support](#support)
 - [License](#license)
-
 
 ---
 
@@ -145,20 +151,6 @@ $ bower install
 
 ---
 
-## Team
-
-> Or Contributors/People
-
-| <a href="http://fvcproductions.com" target="_blank">**FVCproductions**</a> | <a href="http://fvcproductions.com" target="_blank">**FVCproductions**</a> | <a href="http://fvcproductions.com" target="_blank">**FVCproductions**</a> |
-| :---: |:---:| :---:|
-| [![FVCproductions](https://avatars1.githubusercontent.com/u/4284691?v=3&s=200)](http://fvcproductions.com)    | [![FVCproductions](https://avatars1.githubusercontent.com/u/4284691?v=3&s=200)](http://fvcproductions.com) | [![FVCproductions](https://avatars1.githubusercontent.com/u/4284691?v=3&s=200)](http://fvcproductions.com)  |
-| <a href="http://github.com/fvcproductions" target="_blank">`github.com/fvcproductions`</a> | <a href="http://github.com/fvcproductions" target="_blank">`github.com/fvcproductions`</a> | <a href="http://github.com/fvcproductions" target="_blank">`github.com/fvcproductions`</a> |
-
-- You can just grab their GitHub profile image URL
-- You should probably resize their picture using `?s=200` at the end of the image URL.
-
----
-
 ## FAQ
 
 - **How do I do *specifically* so and so?**
@@ -173,15 +165,6 @@ Reach out to me at one of the following places!
 - Website at <a href="http://fvcproductions.com" target="_blank">`fvcproductions.com`</a>
 - Twitter at <a href="http://twitter.com/fvcproductions" target="_blank">`@fvcproductions`</a>
 - Insert more social links here.
-
----
-
-## Donations (Optional)
-
-- You could include a <a href="https://cdn.rawgit.com/gratipay/gratipay-badge/2.3.0/dist/gratipay.png" target="_blank">Gratipay</a> link as well.
-
-[![Support via Gratipay](https://cdn.rawgit.com/gratipay/gratipay-badge/2.3.0/dist/gratipay.png)](https://gratipay.com/fvcproductions/)
-
 
 ---
 
