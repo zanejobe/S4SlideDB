@@ -10,8 +10,9 @@
 https://docs.google.com/presentation/d/1hrxL_wvtDWWL8yOhDuUMt4J_Qua39owmmJgzqqn-J-E/edit?usp=sharing
 
 ## Pertinent links
-- https://www.slidesdublin2020.com
-- https://sites.google.com/a/utexas.edu/s4slide/
+- Clare et al paper https://sp.lyellcollection.org/content/477/1/455.abstract
+- 2020 Slides meeting https://www.slidesdublin2020.com
+- S4Slide webpage https://sites.google.com/a/utexas.edu/s4slide/
 - This project sponsored by ESIP https://www.esipfed.org
 
 ## Team
