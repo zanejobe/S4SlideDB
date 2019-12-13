@@ -6,7 +6,7 @@
 
 > To create a new interactive website for the storage, visualization, and analysis of underwater landslide dimensions (also known as subaqueous landslides, mass transport deposits, slumps, slides, debris flows)
 
-## Wireframe website
+## Wireframe slide deck
 https://docs.google.com/presentation/d/1hrxL_wvtDWWL8yOhDuUMt4J_Qua39owmmJgzqqn-J-E/edit?usp=sharing
 
 ## Pertinent links
