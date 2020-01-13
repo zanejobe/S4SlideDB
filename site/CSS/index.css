@@ -1,0 +1,78 @@
+body{
+	background-color: #E4E2E0;
+	/*margin: -10px;
+	padding: -100px;*/
+	height: 100%;
+	font-family:"Open Sans";
+}
+#content{
+	padding-bottom: 10px;
+}
+#title{
+	margin: 0px 0px;
+	padding: 15px 116px;
+	background-color: white;
+}
+/*******************************************************
+					LINK BAR
+*******************************************************/
+#nav{
+	/*padding-left: 100px;
+	margin: 0px -10px;*/
+	background-color: #696969;
+}
+#nav ul{
+	list-style-type: none;
+	margin: 0px;
+	padding: 16px;
+	padding-left: 105px;
+	overflow: hidden;
+}
+#nav ul li{
+	float: left;
+}
+#nav ul li a{
+	padding: 16px;
+	text-decoration:none;
+}
+#nav ul li a:link{
+	color: #D6CEC8;
+}
+
+#nav ul li a:visited{
+	color: #D6CEC8;
+}
+#nav ul li a:hover{
+	color: white;
+	background-color: #7F7F7F;
+}
+/*******************************************************
+					BOXES CONTAINING FORMS
+*******************************************************/
+/* TODO Fix for below 882 width */
+.box{
+	width:35%;
+	border-radius: 15px;
+	background-color: white;
+	padding: 10px 30px;
+	margin: 10px 35px;
+	float: left;
+	overflow: hidden;
+}
+/*******************************************************
+					FOOTER
+*******************************************************/
+#footer{
+	background-color: #696969;
+	color: #D6CEC8;
+	width:100%;
+	height:48px;
+	position:absolute;
+	bottom:0;
+	left:0;
+	/*padding-left: 105px;*/
+}
+
+#footer p {
+	padding-left: 105px;
+}
