@@ -1,0 +1,63 @@
+﻿type,measurement,handle,units,projection,notes
+Summary identifying information,ID,ID,,,Sequential (automated)
+Summary identifying information,Parent ID,PID,,,"Parent refers to landslide complex, individual ID nos are for each mappable landslide"
+Summary identifying information,Name,Name,,,Published or otherwise
+Summary identifying information,Aliases,Alias,,,Other names for the same landslide
+Summary identifying information,Frontal Confinement,FrontalConfinement,,,"Simple definition = is it frontally confined or frontally emergent?  For reasons of simplificty and to avoid complications in interpretation, this is not in relation to classifications that include translational, rotational, debris flow etc. "
+Summary identifying information,Object type,ObjectType,,,Single or multiple events (Multiple events will be linked to a parent ID)
+Summary identifying information,Depth below seafloor,SSDepthM,m,,"For landslide measured from subsurface data this is the depth to the top of the landslide deposit. If calculated from seismic data, the TWTT should also be referenced in the adjacent column. If mapped from MBES data without seismic or core sample calibration this will not be possible to complete."
+Summary identifying information,Time below seafloor,SSTimeTWTT,twtt milliseconds,,"For landslides measured from subsurface geophysical data, indicate the depth in two way travel time (milliseconds) to the top of the landslide deposit."
+Summary identifying information,Depth below seafloor notes,SSDepthNotes,,,"Notes to accompany the depth. For instance, is it the only measureable depth, an average depth or maximum depth,. What was the assumed (or calibrated) seismic velocity?"
+Measured landslide morphometrics,Latitude centrepoint,Lat,degrees,GCS WGS84,"This is the centrepoint of the mappabale feature. It is recognised that the entirity of a landslide may not be mappable due to data coverage limitations etc, hence this is primarily intended to locate the feature on the global database. In WGS 84"
+Measured landslide morphometrics,Longitude centrepoint,Long,degrees,GCS WGS84,"This is the centrepoint of the mappabale feature. It is recognised that the entirity of a landslide may not be mappable due to data coverage limitations etc, hence this is primialry intended to locate the feature on the global database. In WGS 84"
+Measured landslide morphometrics,Water depth min,WDepthMin,m,,This is the minimum water depth for the mappable feature in metres. 
+Measured landslide morphometrics,Water depth max,WDepthMax,m,,This is the maximum water depth for the mappable feature in metres
+Measured landslide morphometrics,Water depth notes,WDepthNotes,,,Any notes about water depth measurements
+Measured landslide morphometrics,Total Length Lt,Lt,m,,"Total mappable length of slide from upslope limit of headscarp to downslope limit of connected deposit (excludes outrunner blocks). This is measured along the course of the landslide if possible (e.g. from MBES data), otherwise this is a straight line (e.g. measured from 2D seismic data) and is an ""apparent"" length measurement"
+Measured landslide morphometrics,Deposit Length Ld,Ld,m,,"Total mappable length of slide deposit (excludes outrunner blocks). This is measured along the course of the landslide if possible and hence is not necessarily  a straight line (e.g. from MBES data), otherwise this is a straight line (e.g. measured from 2D seismic data) and is an ""apparent"" length measurement"
+Measured landslide morphometrics,Evacuated Length Le,Le,m,,Equal to Lt minus Ld
+Measured landslide morphometrics,Length notes,Lnotes,,,"Is this measured from a section and is an apparent measurement (and thus may be an underestimate), or otherwise how was the distance calculated?"
+Measured landslide morphometrics,Scarp perimeter length Ls,Ls,m,,Length of scarp perimeter (includes side scarps)
+Measured landslide morphometrics,Scarp height Hs,Hs,m,,Height difference from the max convex point in the top to the max concave point at the bottom
+Measured landslide morphometrics,Evacuation height He,He,m,,Height from upslope limit landslide deposit to upslope limit of headscar  
+Measured landslide morphometrics,Scarp width Ws,Ws,m,,Maximum scarp width
+Measured landslide morphometrics,Scarp surface nature ,ScarpSurfNat,,,"Concave, stepped etc"
+Measured landslide morphometrics,Scarp notes,ScarpNotes,,,Any pertinent notes about the scarp measurements
+Measured landslide morphometrics,Maximum deposit width Wd,Wd,m,,"Maximum deposit width (measured orthogonal to deposit length, Ld)"
+Measured landslide morphometrics,Maximum deposit thickness m,TdmaxM,m,,Maximum measured deposit thickness in metres; measured as close to true stratigraphic thickness (TST) as possible
+Measured landslide morphometrics,Maximum deposit thickness twtt,TdmaxTWTT,twtt milliseconds,,Maximum measured deposit thickness in two way travel time (in milliseconds); measured as close to true stratigraphic thickness (TST) as possible
+Measured landslide morphometrics,Maximum unconfined deposit thickness m,TumaxM,m,,Maximum measured unconfined deposit thickness in metres; measured as close to true stratigraphic thickness (TST) as possible
+Measured landslide morphometrics,Maximum unconfined deposit thickness twtt,TumaxTWTT,twtt milliseconds,,Maximum measured unconfined deposit thickness in two way travel time (in milliseconds); measured as close to true stratigraphic thickness (TST) as possible
+Measured landslide morphometrics,Thickness notes,Tnotes,,,"How was thickness calculated? E.g. Derived from MBES, measured from seismic (with which assumed seismic velocity?), or calibrated with core sampling data?"
+Measured landslide morphometrics,Deposit notes,DepNotes,,,Any general notes about the deposit
+Measured landslide morphometrics,Total height drop Ht,Ht,m,,Height from downslope limit of landslide deposit and upslope limit of headscarp
+Measured landslide morphometrics,Slope gradient S,S,m/m,,Measured laterally away from the scar outside of the zone of deformation. This is intended to give an estimate of the gradient of the unfailed slope.
+Measured landslide morphometrics,Slope gradient notes,Snotes,,,"Notes added here to indicate the distance of lateral offset of the measurement, distance over which gradient was measureed and any uncertainties etc.  "
+Measured landslide morphometrics,Slope gradient of headscarp Ss,Ss,m/m,,Maximum slope of the headscarp
+Measured landslide morphometrics,Slope gradient of headscarp notes,Ssnotes,,,Where was this measured?
+Measured landslide morphometrics,Slope gradient toe St,St,m/m,,Measured in front of the toe outside of the zone of deformation.
+Measured landslide morphometrics,Slope gradient toe notes,Stnotes,,,"Notes added here to indicate the distance of lateral offset of the measurement, distance over which gradient was measured and any uncertainties etc. "
+Interpreted landslide metrics,Attachment,Attachment,,,"Is this landslide attached or detached? For definition, refer to Moscardelli and Wood 2016, doi: 10.1130/B31221.1"
+Interpreted landslide metrics,Basal surface type,SurfBasal,,,"Description of basal surface  (e.g. rugose, planar etc)"
+Interpreted landslide metrics,Upper surface type,SurfUpper,,,"Description of upper surface (e.g. rugose, smooth etc)"
+Interpreted landslide metrics,Area (m2),A,m2,,Area of the landslide in square meters
+Interpreted landslide metrics,Area notes,Anotes,,,Any notes about how you calculated area
+Interpreted landslide metrics,Volume (m3),V,m3,,Calculated deposit volume in cubic meters
+Interpreted landslide metrics,Volume notes,Vnotes,,,How was volume calculated? What are the assumptions?
+Interpreted landslide metrics,Age (years),Age,years,,"If known, this is the age of the landslide in years. This may be an absolute value or a constrained age (e.g. >45,000 years)"
+Interpreted landslide metrics,Age error,AgeError,,,"Where available, the error ranges of the dates should be presented"
+Interpreted landslide metrics,Age notes,Agenotes,,,"Information on the dating method, uncertainities, where the sample was taken and any assumptions should be referenced. Here the source of the age should also be referenced. "
+Interpreted landslide metrics,Seafloor features,Features,,,"Useful extra information, about seafloor features in vicinity or in association with the landslide depsosit, such as evidence of fluid expulsion (e.g. pockmarks)"
+Metadata,Data type,DataType,,,"Data on which the mapping was based - High level statement (e..g. bathymetry, combined bathymetry and geophysics, core, deep seismic). Will be a drop down menu"
+Metadata,Data type notes,DataTypeNotes,,,"Data on which the mapping was based - more details can be provided here on combinations of sources (e.g. hull-mounted MBES, AUV data, 2D/3D seismic, sediment cores etc.). This may be a combination of sources"
+Metadata,Data source,DataSource,,,Reference to where the data came from e.g. the data provider and the cruise etc. This should include a hyperlink.
+Metadata,Data repositories,DataRepo,,,Where can the raw/processed data be found if they are available? This should include a hyperlink if available.
+Metadata,Publication source,Pub,,,"Where is the peer-reviewed source? If not, then link to cruise report or equivalent. If not published then this needs to be flagged. This should include a hyperlink."
+Metadata,Data Contact Name,ContactName,,,Who is the contact for this dataset?
+Metadata,Data Contact Email,ContactEmail,,,Who is the contact for this dataset?
+Metadata,Database entry attribution Name,DBContactName,,,Who entered the data in the database?
+Metadata,Database entry attribution Email,DBContactEmail,,,Who entered the data in the database?
+Metadata,Database entry notes,DBnotes,,,"Any specifics to the data that was entered. For example, was length recalculated from that in the original published material?"
+Metadata,Data horiz resolution,DataResH,,,What is the horizontal resolution of the data from which the measuremenets were made?
+Metadata,Data vert resolution,DataResV,,,What is the vertical resolution of the data from which the measuremenets were made?
+Metadata,Additional notes,Notes,,,Comments on any other information/considerations that should be borne in mind when using these data
