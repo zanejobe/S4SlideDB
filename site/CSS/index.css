@@ -88,5 +88,30 @@ html,body{
 #footer p {
 	padding-left: 105px;
 }
+/*******************************************************
+					FOOTER
+*******************************************************/
+table {
+  	border-spacing: 1em .5em;
+  	padding: 0 2em 1em 0;
+  	border: 1px solid black;
+}
+#people {
+  	width:100%;
+}
+#people thead{background-color: lightgray;}
+#people tr:nth-child(even){background-color: lightgray;}
+#people tbody tr:hover{
+  	background-color: lightblue;
+}
+#dataSelector {
+  	width:50%;
+}
+#selector ul li{
+  	list-style-type: none;
+  	margin: 10;
+  	float:left;
+
+}
 
 
