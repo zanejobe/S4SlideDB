@@ -1,0 +1,24 @@
+
+/*******************************************************
+					BOXES CONTAINING FORMS
+*******************************************************/
+/* TODO Fix for below 882 width */
+
+#left{
+    width:70%;
+    float:left;
+}
+#right{
+    width:30%;
+    float:left;
+}
+
+.box1{
+	border-radius: 15px;
+	background-color: white;
+	padding: 10px 30px;
+	margin: 10px 12px;
+	overflow: hidden;
+}
+
+
