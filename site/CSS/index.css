@@ -1,12 +1,15 @@
-body{
+html,body{
 	background-color: #E4E2E0;
-	/*margin: -10px;
-	padding: -100px;*/
 	height: 100%;
 	font-family:"Open Sans";
 }
+
 #content{
-	padding-bottom: 10px;
+    position: relative;
+    min-height: 100%;
+    overflow:auto;
+    margin-right: 100px;
+    margin-left: 100px;
 }
 #title{
 	margin: 0px 0px;
@@ -50,13 +53,22 @@ body{
 					BOXES CONTAINING FORMS
 *******************************************************/
 /* TODO Fix for below 882 width */
+
+#left{
+    width: 70%;
+    float: left;
+}
+
+#right{
+    width: 30%;
+    float: left;
+}
+
 .box{
-	width:35%;
 	border-radius: 15px;
 	background-color: white;
 	padding: 10px 30px;
-	margin: 10px 35px;
-	float: left;
+	margin: 10px 5px;
 	overflow: hidden;
 }
 
@@ -66,12 +78,11 @@ body{
 #footer{
 	background-color: #696969;
 	color: #D6CEC8;
-	width:100%;
 	height:48px;
-	position:absolute;
+    width:100%;
+	position:relative;
 	bottom:0;
 	left:0;
-	/*padding-left: 105px;*/
 }
 
 #footer p {
