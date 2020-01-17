@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<title> S4Slide: Underwater Landslides </title>
+	<meta charset="UTF-8">
+		<meta name="description" content="Data Viewer">
+		<link rel="stylesheet" type="text/css" href="CSS/index.css?">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+	<h1 id="title">Underwater Landslides</h1>
+	<header id="nav">            
+	  <ul>
+        <li><a href="#index.php">Home</a></li>
+      </ul>
+    </header>
+    <div id="content">
+	  <section class="box">
+	  	<fieldset id="search">
+	  		 <legend>Search Data</legend>
+		  	<form id="selector" action="#">
+		   		Search: <input type="text" name="search"><br>
+			  <input type="submit" value="Submit">
+			</form>
+	  	</fieldset>
+
+	  	<fieldset id="dataSelector">
+		  <legend>Select Data</legend>
+		  	<form id="selector" action="#">
+		  	  <ul>
+		  	  	<li><input type="checkbox" name="loc" value="loc"> Location</li>
+		  	  	<li><input type="checkbox" name="cont" value="cont"> Contributor</li>
+		  	  	<li><input type="checkbox" name="date" value="date"> Date</li>
+		  	  	<li><input type="checkbox" name="strat" value="strat"> Strat Interval</li>
+		  	  	<li><input type="checkbox" name="age" value="age"> Age</li>
+		  	  	<li><input type="checkbox" name="loc" value="loc"> Location</li>
+		  	  </ul>
+		  	  <br>
+		  	  <br>
+			  <input type="submit" value="Submit">
+			</form>
+	    </fieldset>
+
+	  	<table id="people">
+			<caption>Data Viewer</caption>
+			<thead>
+				<tr>
+					<th>Location</th>
+					<th>Contributor</th>
+					<th>Date Added</th>
+					<th>Strat Interval</th>
+					<th>Age</th>
+					<th>Download Link</th>
+					<th>Other</th>
+				</tr>
+
+			</thead>
+			<tbody>
+				<tr>
+					<td>Africa</td>
+					<td>Max Silver</td>
+					<td>2019</td>
+					<td>-</td>
+					<td>-</td>
+					<td>link</td>
+					<td>field</td>
+				</tr>
+				<tr>
+					<td>GOM</td>
+					<td>Zane Jobe</td>
+					<td>2018</td>
+					<td>Miocene</td>
+					<td>11-2</td>
+					<td>link</td>
+					<td>field</td>
+				</tr>
+				<tr>
+					<td>Cali</td>
+					<td>MM</td>
+					<td>1926</td>
+					<td>-</td>
+					<td>-</td>
+					<td>link</td>
+					<td>field</td>
+				</tr>				
+			</tbody>
+		</table>
+      </section>
+    </div>
+
+	<footer id="footer">import more php </footer>
+</body>
+</html>
