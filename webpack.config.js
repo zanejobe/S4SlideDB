@@ -9,11 +9,11 @@ module.exports = {
 	module: {
 		rules: [
 			{
-				test: /\.js$/,
+				test: /\.ts$/,
 				exclude: /node_modules/,
-				loader: babel-loader,
+				loader: "babel-loader",
 				options: {
-					presets: ["typescript"]
+					presets: ["@babel/preset-typescript"]
 				}
 			}
 		]
