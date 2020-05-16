@@ -1,7 +1,7 @@
 var path = require("path");
 
 module.exports = {
-	entry: [],
+	entry: ["./src/ts/main.ts"],
 	output: {
 		filename: "index.js",
 		path: path.resolve(__dirname, "s4slide/app/static/js")
