@@ -8,15 +8,15 @@ from django.db import models
 #*      - Parent ID
 #*      - Object Type 
 #**********************************************************************/
-class summary_info_id (models.Model)
+class summary_info_id (models.Model):
     #id = models.AutoField(primary_key=True), - already automatic
     pid = models.IntegerField()
     name = models.CharField(max_length = 50)
     aliases = models.CharField(max_length = 50) 
     frontal_confinement = models.BooleanField()
-    object_type BIT(1)
+    object_type = models.BooleanField()
     ss_depth_m = models.FloatField()
     ss_time_twtt = models.FloatField()
-    ss_depth_notes = modles.TextField()
-    def __str__(self)
+    ss_depth_notes = models.TextField()
+    def __str__(self):
         return self.name
