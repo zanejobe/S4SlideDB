@@ -1,5 +1,6 @@
 s4slide/s4slide/__pycache__/
 s4slide/app/__pycache__/
 s4slide/app/migrations/__pycache__/
+s4slide/app/migrations/????_*.py
 s4slide/db.sqlite3
 node_modules/
