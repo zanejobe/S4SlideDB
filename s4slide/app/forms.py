@@ -1,10 +1,10 @@
 from django import forms
 
 class databaseSearch(forms.Form):
-    search = forms.CharField()
-    loc = forms.CheckboxInput()
-    cont = forms.CheckboxInput()
-    date = forms.CheckboxInput()
-    strat = forms.CheckboxInput()
-    age = forms.CheckboxInput()
-    loc2 = forms.CheckboxInput()
+	search = forms.CharField()
+	loc = forms.BooleanField(required=False, label="Location")
+	cont = forms.BooleanField(required=False, label="Contributor")
+	date = forms.BooleanField(required=False)
+	strat = forms.BooleanField(required=False, label="Strat Interval")
+	age = forms.BooleanField(required=False)
+

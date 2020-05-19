@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from forms import databaseSearch
+from .forms import databaseSearch
 
 def index(request):
 	return render(request, "index.html")
@@ -17,16 +17,12 @@ def people(request):
 	return render(request, "people.html")
 
 def viewer(request):
+	if len(request.GET) > 0:
+		form = databaseSearch(request.GET)
+		if form.is_valid():
+			data = request.GET
+	else:
+		form = databaseSearch()
+		data = {}
+	return render(request, "viewer.html", {"form": form, "data": data})
 
-    #attempt to read in information from search bar
-
-    if request.method == 'GET': #change to GET
-        form = databaseSearch(request.GET)
-        if form.is_valid():
-            inputTerm = form.cleaned_data['search']
-
-            print(inputTerm)
-
-    form = databaseSearch()
-
-    return render(request, "viewer.html", {'form': form})
