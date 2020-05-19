@@ -1,50 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
 
-	{% include "head.html" %}
+	{% include "head.html" with title="Links" %}
 
-<body>
-	<h1 id="title">Links</h1>
-    
-	{% include "navbar.html" %}
-	
-	<div id="content">
-        <div id="left">
-            <div id="inner-left">
-                <article class="box">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas pellentesque placerat orci, ut placerat tortor. Aenean efficitur feugiat ex, sed ornare enim accumsan facilisis. Integer venenatis est a molestie egestas. Nunc libero ligula, sollicitudin non molestie id, lacinia at enim. Donec tellus nulla, gravida et nibh ut, volutpat dapibus leo. Cras tempor tristique nunc et posuere. Sed viverra venenatis odio eu fermentum.
-                </br></br>
-                Curabitur sit amet magna ut odio euismod tempus. Maecenas id felis a sapien tincidunt placerat. Donec porta tincidunt condimentum. Pellentesque malesuada ante ac tristique consequat. Morbi ut iaculis lorem. Proin non dolor orci. Pellentesque eget tempus sapien, nec venenatis ex. Donec congue imperdiet venenatis. Donec facilisis in erat luctus auctor.
-                </article>
+	<body>
+		<h1 id="title">Links</h1>
 
-                <article class="box">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas pellentesque placerat orci, ut placerat tortor. Aenean efficitur feugiat ex, sed ornare enim accumsan facilisis. Integer venenatis est a molestie egestas. Nunc libero ligula, sollicitudin non molestie id, lacinia at enim. Donec tellus nulla, gravida et nibh ut, volutpat dapibus leo. Cras tempor tristique nunc et posuere. Sed viverra venenatis odio eu fermentum.
-                </br></br>
-                Curabitur sit amet magna ut odio euismod tempus. Maecenas id felis a sapien tincidunt placerat. Donec porta tincidunt condimentum. Pellentesque malesuada ante ac tristique consequat. Morbi ut iaculis lorem. Proin non dolor orci. Pellentesque eget tempus sapien, nec venenatis ex. Donec congue imperdiet venenatis. Donec facilisis in erat luctus auctor.
-                </article> 
+		{% include "navbar.html" %}
 
-                <article class="box">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas pellentesque placerat orci, ut placerat tortor. Aenean efficitur feugiat ex, sed ornare enim accumsan facilisis. Integer venenatis est a molestie egestas. Nunc libero ligula, sollicitudin non molestie id, lacinia at enim. Donec tellus nulla, gravida et nibh ut, volutpat dapibus leo. Cras tempor tristique nunc et posuere. Sed viverra venenatis odio eu fermentum.
-                </br></br>
-                Curabitur sit amet magna ut odio euismod tempus. Maecenas id felis a sapien tincidunt placerat. Donec porta tincidunt condimentum. Pellentesque malesuada ante ac tristique consequat. Morbi ut iaculis lorem. Proin non dolor orci. Pellentesque eget tempus sapien, nec venenatis ex. Donec congue imperdiet venenatis. Donec facilisis in erat luctus auctor.
-                </article>  
+		<div id="content">
+			<div id="left">
+				<div id="inner-left">
+					<article class="box">
+						{% lorem %}
+						</br>
+						{% lorem %}
+					</article>
 
-                <p class="box"> test test
+					<article class="box">
+						{% lorem %}
+						</br>
+						{% lorem %}
+					</article>
 
-                </p>
-            </div>
-            
-        </div>
+					<article class="box">
+						{% lorem %}
+						</br>
+						{% lorem %}
+					</article>
+				</div>
 
-        <div id="right">
-            <div id="inner-right">
-                <p class="box"> Curabitur sit amet magna ut odio euismod tempus. Maecenas id felis a sapien tincidunt placerat. Donec porta tincidunt condimentum. Pellentesque malesuada ante ac tristique consequat. Morbi ut iaculis lorem. Proin non dolor orci. Pellentesque eget tempus sapien, nec venenatis ex. Donec congue imperdiet venenatis. Donec facilisis in erat luctus.
-                </p>
-            </div>
-        </div>
+			</div>
 
-    </div>
+			<div id="right">
+				<div id="inner-right">
+					<p class="box">{% lorem %}</p>
+				</div>
+			</div>
 
-	<footer id="footer">
-        import more php 
-    </footer>
+		</div>
 
-</body>
+		<footer id="footer">
+		</footer>
+
+	</body>
 </html>
