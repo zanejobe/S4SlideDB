@@ -1,4 +1,3 @@
-ID1 *,Attachment,BasalSurfaceType,UpperSurfaceType,Area_km2,AreaNotes,Volume_km3,VolumeNotes,AgeYears,AgeError,AgeNotes,SeafloorFeatures,OBJECTID_12__
 1,FALSE,Mostly planar,Smooth,0,,,,Holocene,,"From stratigraphy, will have a better age in the next year",On the Laurentian Fan levee consisting of turbidite beds,1
 2,FALSE,,,0,,,,,,,,2
 3,FALSE,,,0,,3000,,,,,,3
