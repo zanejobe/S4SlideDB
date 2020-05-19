@@ -12,10 +12,22 @@
 	  <section class="box">
 	  	<fieldset id="search">
 	  		 <legend>Search Data</legend>
+
+			<form method="post">
+				{% csrf_token%}
+				{{form}}
+				<!--
+		   		Search: <input type="text" name="search"><br>
+				{{form}}-->
+			  <input type="submit" value="Submit">
+			</form>
+
+			<!--
 		  	<form id="selector" action="#">
 		   		Search: <input type="text" name="search"><br>
 			  <input type="submit" value="Submit">
 			</form>
+			-->
 	  	</fieldset>
 
 	  	<fieldset id="dataSelector">
