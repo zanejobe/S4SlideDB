@@ -19,8 +19,8 @@ def people(request):
 def viewer(request):
     #attempt to read in information from search bar
 
-    if request.method == 'POST':
-        form = databaseSearch(request.POST)
+    if request.method == 'GET': #change to GET
+        form = databaseSearch(request.GET)
         if form.is_valid():
             inputTerm = form.cleaned_data['search']
 
