@@ -4,7 +4,7 @@
 	{% include "head.html" with title="Database" %}
 
 	<body>
-		<h1 id="title">Underwater Landslides</h1>
+		<h1 id="title">Underwater Landslide Database</h1>
 
 		{% include "navbar.html" %}
 
@@ -13,33 +13,15 @@
 				{% for k,v in data.items %}
 					<p>{{ k }}={{ v }}</p>
 				{% endfor %}
-				<fieldset id="search">
-					<legend>Search Data</legend>
 
-					<form id="selector" method="get">
-						{{ form }}
+				<form id="dataSelector" method="get">
+					<fieldset id="selector">
+						<legend>Search Data</legend>
+						<ul>{{ form.as_ul }}</ul>
 						<input type="submit" value="Submit">
-					</form>
+					</fieldset>
+				</form>
 
-				</fieldset>
-<!--
-				<fieldset id="dataSelector">
-					<legend>Select Data</legend>
-					<form id="selector" action="#">
-						<ul>
-							<li><input type="checkbox" name="loc" value="loc"> Location</li>
-							<li><input type="checkbox" name="cont" value="cont"> Contributor</li>
-							<li><input type="checkbox" name="date" value="date"> Date</li>
-							<li><input type="checkbox" name="strat" value="strat"> Strat Interval</li>
-							<li><input type="checkbox" name="age" value="age"> Age</li>
-							<li><input type="checkbox" name="loc" value="loc"> Location</li>
-						</ul>
-						<br>
-						<br>
-						<input type="submit" value="Submit">
-					</form>
-				</fieldset>
--->
 				<table id="people">
 					<caption>Data Viewer</caption>
 					<thead>
