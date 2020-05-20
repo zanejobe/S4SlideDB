@@ -10,8 +10,12 @@
 
 		<div id="content">
 			<section class="box">
-				{% for k,v in data.items %}
-					<p>{{ k }}={{ v }}</p>
+				{% for row in data %}
+					<p>
+					{% for k,v in row.items %}
+					{{ k }}={{ v }}
+					{% endfor %}
+					</p>
 				{% endfor %}
 
 				<form id="dataSelector" method="get">
