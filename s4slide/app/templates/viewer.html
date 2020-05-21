@@ -10,14 +10,6 @@
 
 		<div id="content">
 			<section class="box">
-				{% for row in data %}
-					<p>
-					{% for k,v in row.items %}
-					{{ k }}={{ v }}
-					{% endfor %}
-					</p>
-				{% endfor %}
-
 				<form id="dataSelector" method="get">
 					<fieldset id="selector">
 						<legend>Search Data</legend>
@@ -27,47 +19,39 @@
 				</form>
 
 				<table id="people">
-					<caption>Data Viewer</caption>
+					<h2>Data Viewer</h2>
 					<thead>
 						<tr>
-							<th>Location</th>
-							<th>Contributor</th>
-							<th>Date Added</th>
-							<th>Strat Interval</th>
-							<th>Age</th>
-							<th>Download Link</th>
-							<th>Other</th>
+							<th>Name</th>
+							<th>Frontally Confined</th>
+							<th>Depth</th>
+							<th>Time</th>
+							<th>Notes</th>
+							<th>Morphometrics</th>
+							<th>Metrics</th>
+							<th>Metadata</th>
 						</tr>
 
 					</thead>
 					<tbody>
+						{% for row in data %}
 						<tr>
-							<td>Africa</td>
-							<td>Max Silver</td>
-							<td>2019</td>
-							<td>-</td>
-							<td>-</td>
-							<td>link</td>
-							<td>field</td>
+							<td>{{ row.name }}</td>
+							<td>
+								{% if row.frontal_confinement %}
+								Yes
+								{% else %}
+								No
+								{% endif %}
+							</td>
+							<td>{{ row.ss_depth_m }}</td>
+							<td>{{ row.ss_time_twtt }}</td>
+							<td>{{ row.ss_depth_notes }}</td>
+							<td><a href="">View</a></td>
+							<td><a href="">View</a></td>
+							<td><a href="">View</a></td>
 						</tr>
-						<tr>
-							<td>GOM</td>
-							<td>Zane Jobe</td>
-							<td>2018</td>
-							<td>Miocene</td>
-							<td>11-2</td>
-							<td>link</td>
-							<td>field</td>
-						</tr>
-						<tr>
-							<td>Cali</td>
-							<td>MM</td>
-							<td>1926</td>
-							<td>-</td>
-							<td>-</td>
-							<td>link</td>
-							<td>field</td>
-						</tr>				
+						{% endfor %}
 					</tbody>
 				</table>
 			</section>
