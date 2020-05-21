@@ -1,5 +1,6 @@
 import $ from "jquery";
 
 $(() => {
-	console.log("Hello world!");
+	if (location.pathname.includes("viewer"))
+		$("input[type='checkbox']").prop("disabled", true);
 });
