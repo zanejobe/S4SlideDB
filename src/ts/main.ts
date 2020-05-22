@@ -17,8 +17,10 @@ $(() => {
 	});
 
 	$(".close").click(ev => {
-		$(".modal").hide();
-		$(ev.target).next().remove();
+		let parent = $(ev.target).parents(".modal");
+		parent.hide();
+		if (parent.attr("id") === "info")
+			$(ev.target).next().remove();
 	});
 });
 

@@ -34,10 +34,18 @@
 						{% for row in data %}
 						<tr>
 							<td>{{ row.name }}</td>
-							<td><a href="#{{ row.id }}" class="summary">View</a></td>
-							<td><a href="#{{ row.id }}" class="morpho">View</a></td>
-							<td><a href="#{{ row.id }}" class="metrics">View</a></td>
-							<td><a href="#{{ row.id }}" class="meta">View</a></td>
+							<td>
+								<a href="#{{ row.id }}" class="summary" onclick="document.getElementById('sum-{{ row.id }}').style.display = 'block'">View Summary</a>
+								<div class="modal" id="sum-{{ row.id }}">
+									<div class="modal-content">
+										<span class="close">&times;</span>
+										<code>{{ row }}</code>
+									</div>
+								</div>
+							</td>
+							<td><a href="#{{ row.id }}" class="morpho">View Morphometrics</a></td>
+							<td><a href="#{{ row.id }}" class="metrics">View Metrics</a></td>
+							<td><a href="#{{ row.id }}" class="meta">View Metadata</a></td>
 						</tr>
 						{% endfor %}
 					</tbody>
