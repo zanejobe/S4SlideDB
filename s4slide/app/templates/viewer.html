@@ -23,10 +23,7 @@
 					<thead>
 						<tr>
 							<th>Name</th>
-							<th>Frontally Confined</th>
-							<th>Depth</th>
-							<th>Time</th>
-							<th>Notes</th>
+							<th>Summary</th>
 							<th>Morphometrics</th>
 							<th>Metrics</th>
 							<th>Metadata</th>
@@ -37,24 +34,21 @@
 						{% for row in data %}
 						<tr>
 							<td>{{ row.name }}</td>
-							<td>
-								{% if row.frontal_confinement %}
-								Yes
-								{% else %}
-								No
-								{% endif %}
-							</td>
-							<td>{{ row.ss_depth_m }}</td>
-							<td>{{ row.ss_time_twtt }}</td>
-							<td>{{ row.ss_depth_notes }}</td>
-							<td><a href="">View</a></td>
-							<td><a href="">View</a></td>
-							<td><a href="">View</a></td>
+							<td><a href="#{{ row.id }}" class="summary">View</a></td>
+							<td><a href="#{{ row.id }}" class="morpho">View</a></td>
+							<td><a href="#{{ row.id }}" class="metrics">View</a></td>
+							<td><a href="#{{ row.id }}" class="meta">View</a></td>
 						</tr>
 						{% endfor %}
 					</tbody>
 				</table>
 			</section>
+		</div>
+
+		<div class="modal" id="info">
+			<div class="modal-content">
+				<span class="close">&times;</span>
+			</div>
 		</div>
 
 		<footer id="footer">

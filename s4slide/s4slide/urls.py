@@ -24,5 +24,8 @@ urlpatterns = [
     path("landslide/", views.landslide),
     path("links/", views.links),
     path("people/", views.people),
-    path("viewer/", views.viewer)
+    path("viewer/", views.viewer),
+    path("viewer/morpho/<int:_id>/", views.morpho),
+    path("viewer/metrics/<int:_id>/", views.metrics),
+    path("viewer/meta/<int:_id>/", views.meta)
 ]
