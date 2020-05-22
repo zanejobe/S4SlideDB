@@ -4,6 +4,8 @@ Relative pathnames are used, so run it from this directory.
 Usage: sqlite3 -init import.sql db.sqlite3
 */
 
+.shell python3.6 manage.py migrate app zero
+.shell rm -f app/migrations/????_*.py
 .shell python3.6 manage.py makemigrations
 .shell python3.6 manage.py migrate
 

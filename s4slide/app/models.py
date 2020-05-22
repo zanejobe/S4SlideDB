@@ -1,34 +1,21 @@
 from django.db import models
 
 
-#**********************************************************************
-#* SUMMARY_INFO_ID
-#* 
-#* CONFUSED ABOUT THE DATA TYPE FOR THE FOLLOWING VARIABLES: 
-#*      - Parent ID
-#*      - Object Type 
-#**********************************************************************/
 class summary_info_id (models.Model):
 	pid = models.IntegerField(null=True)
 	name = models.TextField()
 	aliases = models.TextField() 
 	frontal_confinement = models.BooleanField()
-	object_type = models.BooleanField()
+	TYPE_CHOICES = [
+			("S", "Single"),
+			("M", "Multiple")]
+	object_type = models.CharField(max_length=1, choices=TYPE_CHOICES) # TODO check that pid is not null if multiple
 	ss_depth_m = models.FloatField(null=True)
 	ss_time_twtt = models.FloatField(null=True)
 	ss_depth_notes = models.TextField()
+	comments = models.TextField()
+	category = models.TextField()
 
-#	def __str__(self):
-#		return self.name
-
-#/**********************************************************************
-# * LANDSLIDE MORPHOMETRICS
-# *
-# * CONFUSED ABOUT THE DATA TYPE FOR THE FOLLOWING VARIABLES: 
-# *      - Scarp Surf Nat 
-# *          - What kind of data type is this? String?
-# *          - If it is a string, how long should the string be
-# **********************************************************************/
 class landslide_morphometrics (models.Model):
 	landslide = models.ForeignKey('summary_info_id', on_delete=models.CASCADE,)
 	latitude = models.FloatField()
@@ -61,15 +48,6 @@ class landslide_morphometrics (models.Model):
 	st = models.FloatField(null=True)
 	st_notes = models.TextField()
 
-#	def __str__(self):
-#		return self.name
-
-#/**********************************************************************
-# * LANDSLIDE METRICS
-# *
-# * CONFUSED ABOUT THE DATA TYPE FOR THE FOLLOWING VARIABLES: 
-# *      - Age error
-# **********************************************************************/
 class landslide_metrics (models.Model):
 	landslide = models.ForeignKey('summary_info_id', on_delete=models.CASCADE,)
 	attachment = models.BooleanField()
@@ -80,27 +58,10 @@ class landslide_metrics (models.Model):
 	v = models.FloatField(null=True)
 	v_notes = models.TextField()
 	age = models.TextField()
-	age_error = models.BooleanField()
+	age_error = models.FloatField(null=True)
 	age_notes = models.TextField()
 	features = models.TextField()
 
-#	def __str__(self):
-#		return self.name
-
-#/**********************************************************************
-# * META TABLE
-# *
-# * CONFUSED ABOUT THE DATA TYPE FOR THE FOLLOWING VARIABLES: 
-# *      - Data Sources (strictly a link?)
-# *      - Data Repo (strictly a link?)
-# *      - Pub (strictly a link?)
-# *      - Data resolution horizontal 
-# *          - (is this an int or float, what are the units)
-# *          - what are the units on this? pixel?
-# *      - Data resolution vertical 
-# *          - (is this an int or float, what are the units)
-# *          - what are the units on this? pixel?
-# **********************************************************************/
 class meta_table (models.Model):
 	landslide = models.ForeignKey('summary_info_id', on_delete=models.CASCADE,)
 	data_type = models.TextField()
@@ -111,10 +72,7 @@ class meta_table (models.Model):
 	contact_name = models.TextField()
 	contact_email = models.TextField()
 	db_notes = models.TextField()
-	data_res_h = models.IntegerField(null=True)
-	data_res_v = models.IntegerField(null=True)
+	data_res_h = models.FloatField(null=True)
+	data_res_v = models.FloatField(null=True)
 	notes = models.TextField()
-
-#	def __str__(self):
-#		return self.name
 
