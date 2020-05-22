@@ -5,15 +5,15 @@ $(() => {
 		$("input[type='checkbox']").prop("disabled", true);
 
 	$(".morpho").click(ev => {
-		$.getJSON(`/viewer/morpho/${ev.target.hash.substring(1)}/`, displayInfo);
+		$.getJSON(`morpho/${ev.target.hash.substring(1)}/`, displayInfo);
 	});
 
 	$(".metrics").click(ev => {
-		$.getJSON(`/viewer/metrics/${ev.target.hash.substring(1)}/`, displayInfo);
+		$.getJSON(`metrics/${ev.target.hash.substring(1)}/`, displayInfo);
 	});
 
 	$(".meta").click(ev => {
-		$.getJSON(`/viewer/meta/${ev.target.hash.substring(1)}/`, displayInfo);
+		$.getJSON(`meta/${ev.target.hash.substring(1)}/`, displayInfo);
 	});
 
 	$(".close").click(ev => {

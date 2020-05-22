@@ -28,11 +28,11 @@ def viewer(request):
 		data = {}
 	return render(request, "viewer.html", {"form": form, "data": data})
 
-def morpho(request, _id=-1):
-	return JsonResponse(landslide_morphometrics.objects.filter(id=_id).values()[0])
+def morpho(request, id=-1):
+	return JsonResponse(landslide_morphometrics.objects.filter(landslide_id=id).values()[0])
 
-def metrics(request, _id=-1):
-	return JsonResponse(landslide_metrics.objects.filter(id=_id).values()[0])
+def metrics(request, id=-1):
+	return JsonResponse(landslide_metrics.objects.filter(landslide_id=id).values()[0])
 
-def meta(request, _id=-1):
-	return JsonResponse(meta_table.objects.filter(id=_id).values()[0])
+def meta(request, id=-1):
+	return JsonResponse(meta_table.objects.filter(landslide_id=id).values()[0])
