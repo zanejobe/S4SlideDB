@@ -31,32 +31,52 @@
 
 					</thead>
 					<tbody>
-						{% for row in data %}
+						{% for sum_row, morpho_row, metrics_row, meta_row in data %}
+						{% with id=sum_row.id %}
 						<tr>
-							<td>{{ row.name }}</td>
+							<td>{{ sum_row.name }}</td>
 							<td>
-								<a href="#{{ row.id }}" class="summary" onclick="document.getElementById('sum-{{ row.id }}').style.display = 'block'">View Summary</a>
-								<div class="modal" id="sum-{{ row.id }}">
+								<a href="#" onclick="document.getElementById('sum-{{ id }}').style.display = 'block'">View Summary</a>
+								<div class="modal" id="sum-{{ id }}">
 									<div class="modal-content">
 										<span class="close">&times;</span>
-										<code>{{ row }}</code>
+										<code>{{ sum_row|json_script:"" }}</code>
 									</div>
 								</div>
 							</td>
-							<td><a href="#{{ row.id }}" class="morpho">View Morphometrics</a></td>
-							<td><a href="#{{ row.id }}" class="metrics">View Metrics</a></td>
-							<td><a href="#{{ row.id }}" class="meta">View Metadata</a></td>
+							<td>
+								<a href="#" onclick="document.getElementById('morpho-{{ id }}').style.display = 'block'">View Morphometrics</a>
+								<div class="modal" id="morpho-{{ id }}">
+									<div class="modal-content">
+										<span class="close">&times;</span>
+										<code>{{ morpho_row|json_script:"" }}</code>
+									</div>
+								</div>
+							</td>
+							<td>
+								<a href="#" onclick="document.getElementById('metrics-{{ id }}').style.display = 'block'">View Metrics</a>
+								<div class="modal" id="metrics-{{ id }}">
+									<div class="modal-content">
+										<span class="close">&times;</span>
+										<code>{{ metrics_row|json_script:"" }}</code>
+									</div>
+								</div>
+							</td>
+							<td>
+								<a href="#" onclick="document.getElementById('meta-{{ id }}').style.display = 'block'">View Metadata</a>
+								<div class="modal" id="meta-{{ id }}">
+									<div class="modal-content">
+										<span class="close">&times;</span>
+										<code>{{ meta_row|json_script:"" }}</code>
+									</div>
+								</div>
+							</td>
 						</tr>
+						{% endwith %}
 						{% endfor %}
 					</tbody>
 				</table>
 			</section>
-		</div>
-
-		<div class="modal" id="info">
-			<div class="modal-content">
-				<span class="close">&times;</span>
-			</div>
 		</div>
 
 		<footer id="footer">

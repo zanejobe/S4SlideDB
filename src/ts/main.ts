@@ -1,35 +1,44 @@
 import $ from "jquery";
 
 $(() => {
-	if (location.pathname.includes("viewer"))
+	if (location.pathname.includes("viewer")) {
 		$("input[type='checkbox']").prop("disabled", true);
+		$("script").contents().unwrap();
+	}
 
-	$(".morpho").click(ev => {
-		$.getJSON(`morpho/${ev.target.hash.substring(1)}/`, displayInfo);
-	});
-
-	$(".metrics").click(ev => {
-		$.getJSON(`metrics/${ev.target.hash.substring(1)}/`, displayInfo);
-	});
-
-	$(".meta").click(ev => {
-		$.getJSON(`meta/${ev.target.hash.substring(1)}/`, displayInfo);
-	});
-
-	$(".close").click(ev => {
-		let parent = $(ev.target).parents(".modal");
-		parent.hide();
-		if (parent.attr("id") === "info")
-			$(ev.target).next().remove();
-	});
+	$(".close").click(hideModal);
 });
 
-function displayInfo(data: landslideMorphometrics | landslideMetrics | landslideMeta) : void {
-	$("#info .modal-content").append(`<code>${JSON.stringify(data)}</code>`);
-	$("#info").show();
+document.onkeydown = hideModal;
+window.onclick = hideModal;
+
+function hideModal(ev) {
+	if (ev.target.className.includes("modal") ||
+		ev.target.className.includes("close") ||
+		ev.key === "Escape")
+		$(".modal").hide();
 }
 
-interface landslideMorphometrics {
+interface LandslideSummary {
+	id: number;
+	pid: number;
+	name: string;
+	aliases: string;
+	frontal_confinement: boolean;
+	object_type: Type;
+	ss_depth_m: number;
+	ss_time_twtt: number;
+	ss_depth_notes: string;
+	comments: string;
+	category: string;
+}
+
+enum Type {
+	S = "Single",
+	M = "Multiple",
+}
+
+interface LandslideMorphometrics {
 	id: number;
 	landslide: number;
 	latitude: number;
@@ -63,7 +72,7 @@ interface landslideMorphometrics {
 	st_notes: string;
 }
 
-interface landslideMetrics {
+interface LandslideMetrics {
 	id: number;
 	landslide: number;
 	attachment: boolean;
@@ -79,7 +88,7 @@ interface landslideMetrics {
 	features: string;
 }
 
-interface landslideMeta {
+interface LandslideMeta {
 	id: number;
 	landslide: number;
 	data_type: string;

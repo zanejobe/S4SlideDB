@@ -25,7 +25,4 @@ urlpatterns = [
     path("links/", views.links),
     path("people/", views.people),
     path("viewer/", views.viewer),
-    path("viewer/morpho/<int:id>/", views.morpho),
-    path("viewer/metrics/<int:id>/", views.metrics),
-    path("viewer/meta/<int:id>/", views.meta)
 ]
