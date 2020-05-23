@@ -18,10 +18,14 @@
 					</fieldset>
 				</form>
 
+				<button type="button" id="map">View selected data in map</button>
+				<button type="button" id="plot">Plot selected data</button>
+
 				<table id="people">
-					<h2>Data Viewer</h2>
+					<caption>Data Viewer</caption>
 					<thead>
 						<tr>
+							<th><input type="checkbox" value="all"></th>
 							<th>Name</th>
 							<th>Summary</th>
 							<th>Morphometrics</th>
@@ -34,6 +38,7 @@
 						{% for sum_row, morpho_row, metrics_row, meta_row in data %}
 						{% with id=sum_row.id %}
 						<tr>
+							<td><input type="checkbox" value="{{ id }}"></td>
 							<td>{{ sum_row.name }}</td>
 							<td>
 								<a href="#" onclick="document.getElementById('sum-{{ id }}').style.display = 'block'">View Summary</a>

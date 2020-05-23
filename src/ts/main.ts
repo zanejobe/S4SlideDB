@@ -2,11 +2,27 @@ import $ from "jquery";
 
 $(() => {
 	if (location.pathname.includes("viewer")) {
-		$("input[type='checkbox']").prop("disabled", true);
+		$("#selector input:checkbox").prop("disabled", true);
 		$("script").contents().unwrap();
 	}
 
 	$(".close").click(hideModal);
+
+	$("input[value='all']").change(ev =>
+		$("#people input").prop("checked", $(ev.target).prop("checked")));
+
+	$("#map,#plot").click(ev => {
+		let landslides: Landslide[] = [];
+		$("#people input[value!='all']:checked").each((ind, ele) => {
+			let num = $(ele).attr("value");
+			let sum: Summary = JSON.parse($(`#sum-${num} code`).text());
+			let morpho: Morphometrics = JSON.parse($(`#morpho-${num} code`).text());
+			let metrics: Metrics = JSON.parse($(`#metrics-${num} code`).text());
+			let meta: Metadata = JSON.parse($(`#meta-${num} code`).text());
+			landslides.push(new Landslide(sum, morpho, metrics, meta));
+		});
+		console.log(landslides);
+	});
 });
 
 document.onkeydown = hideModal;
@@ -19,7 +35,21 @@ function hideModal(ev) {
 		$(".modal").hide();
 }
 
-interface LandslideSummary {
+class Landslide {
+	sum: Summary;
+	morpho: Morphometrics;
+	metrics: Metrics;
+	meta: Metadata;
+
+	constructor(sum: Summary, morpho: Morphometrics, metrics: Metrics, meta: Metadata) {
+		this.sum = sum;
+		this.morpho = morpho;
+		this.metrics = metrics;
+		this.meta = meta;
+	}
+}
+
+interface Summary {
 	id: number;
 	pid: number;
 	name: string;
@@ -38,7 +68,7 @@ enum Type {
 	M = "Multiple",
 }
 
-interface LandslideMorphometrics {
+interface Morphometrics {
 	id: number;
 	landslide: number;
 	latitude: number;
@@ -72,7 +102,7 @@ interface LandslideMorphometrics {
 	st_notes: string;
 }
 
-interface LandslideMetrics {
+interface Metrics {
 	id: number;
 	landslide: number;
 	attachment: boolean;
@@ -88,7 +118,7 @@ interface LandslideMetrics {
 	features: string;
 }
 
-interface LandslideMeta {
+interface Metadata {
 	id: number;
 	landslide: number;
 	data_type: string;
