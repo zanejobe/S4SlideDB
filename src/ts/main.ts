@@ -1,4 +1,5 @@
 import $ from "jquery";
+import json2csv from "json-2-csv";
 
 $(() => {
 	if (location.pathname.includes("viewer")) {
@@ -11,28 +12,48 @@ $(() => {
 	$("input[value='all']").change(ev =>
 		$("#people input").prop("checked", $(ev.target).prop("checked")));
 
-	$("#map,#plot").click(ev => {
-		let landslides: Landslide[] = [];
-		$("#people input[value!='all']:checked").each((ind, ele) => {
-			let num = $(ele).attr("value");
-			let sum: Summary = JSON.parse($(`#sum-${num} code`).text());
-			let morpho: Morphometrics = JSON.parse($(`#morpho-${num} code`).text());
-			let metrics: Metrics = JSON.parse($(`#metrics-${num} code`).text());
-			let meta: Metadata = JSON.parse($(`#meta-${num} code`).text());
-			landslides.push(new Landslide(sum, morpho, metrics, meta));
-		});
+	$("#map").click(ev => {
+		let landslides: Landslide[] = serializeRows();
 		console.log(landslides);
 	});
+
+	$("#plot").click(ev => {
+		let landslides: Landslide[] = serializeRows();
+		console.log(landslides);
+	});
+
+	$("#dl").click(ev => json2csv.json2csv(serializeRows(), createDownload, { expandArrayObjects: true }));
 });
 
 document.onkeydown = hideModal;
 window.onclick = hideModal;
 
-function hideModal(ev) {
+function hideModal(ev): void {
 	if (ev.target.className.includes("modal") ||
 		ev.target.className.includes("close") ||
 		ev.key === "Escape")
 		$(".modal").hide();
+}
+
+function serializeRows(): Landslide[] {
+	let landslides: Landslide[] = [];
+	$("#people input[value!='all']:checked").each((ind, ele) => {
+		let num = $(ele).attr("value");
+		let sum: Summary = JSON.parse($(`#sum-${num} code`).text());
+		let morpho: Morphometrics = JSON.parse($(`#morpho-${num} code`).text());
+		let metrics: Metrics = JSON.parse($(`#metrics-${num} code`).text());
+		let meta: Metadata = JSON.parse($(`#meta-${num} code`).text());
+		landslides.push(new Landslide(sum, morpho, metrics, meta));
+	});
+	return landslides;
+}
+
+function createDownload(err, csv): void {
+	if (err) return;
+	let ele = document.createElement("a");
+	// TODO generate unique filename for each download
+	$(ele).attr({ "href": `data:text/csv;charset=utf-8,${encodeURI(csv)}`, "download": "data.csv" });
+	ele.click();
 }
 
 class Landslide {
