@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "build": "webpack --progress",
-    "start": "python3.6 s4slide/manage.py runserver"
+    "start": "python3.6 s4slide/manage.py runserver",
+    "type-check": "tsc --noEmit --esModuleInterop --lib 'ES2015, DOM' src/ts/*"
   },
   "repository": {
     "type": "git",

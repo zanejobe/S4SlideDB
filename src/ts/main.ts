@@ -1,5 +1,5 @@
 import $ from "jquery";
-import json2csv from "json-2-csv";
+import * as converter from "json-2-csv";
 
 $(() => {
 	if (location.pathname.includes("viewer")) {
@@ -23,7 +23,7 @@ $(() => {
 	});
 
 	$("#dl").click(ev =>
-		json2csv.json2csv(serializeRows(), createDownload, {
+		converter.json2csv(serializeRows(), createDownload, {
 			expandArrayObjects: true }));
 });
 
@@ -50,7 +50,7 @@ function serializeRows(): Landslide[] {
 	return landslides;
 }
 
-function createDownload(err, csv): void {
+function createDownload(err: Error, csv: string): void {
 	if (err) return;
 	let ele = document.createElement("a");
 	$(ele).attr({
