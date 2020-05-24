@@ -22,7 +22,9 @@ $(() => {
 		console.log(landslides);
 	});
 
-	$("#dl").click(ev => json2csv.json2csv(serializeRows(), createDownload, { expandArrayObjects: true }));
+	$("#dl").click(ev =>
+		json2csv.json2csv(serializeRows(), createDownload, {
+			expandArrayObjects: true }));
 });
 
 document.onkeydown = hideModal;
@@ -51,8 +53,10 @@ function serializeRows(): Landslide[] {
 function createDownload(err, csv): void {
 	if (err) return;
 	let ele = document.createElement("a");
-	// TODO generate unique filename for each download
-	$(ele).attr({ "href": `data:text/csv;charset=utf-8,${encodeURI(csv)}`, "download": "data.csv" });
+	$(ele).attr({
+		"href": `data:text/csv;charset=utf-8,${encodeURI(csv)}`,
+		"download": `s4slide-db-dump-${new Date().toISOString()}.csv`
+	});
 	ele.click();
 }
 
