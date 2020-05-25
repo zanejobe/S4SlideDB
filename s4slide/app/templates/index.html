@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	{% include "head.html" with title="Home" %}
+
+	<body>
+		<h1 id="title">Underwater Landslides</h1>
+
+		{% include "navbar.html" %}
+
+		<div id="content">
+			<div id="left">
+				<div id="inner-left">
+					<article class="box">
+						{% load static %}
+						<img src="{% static "images/landslide.jpg" %}" alt="Stevie Nicks Loves Cocaine" width="720">
+					</article>
+					<article class="box">
+						{% lorem %}
+						</br>
+						{% lorem %}
+					</article>
+
+					<article class="box">
+						{% lorem %}
+						</br>
+						{% lorem %}
+					</article>
+				</div>
+			</div>
+
+			<div id="right">
+				<div id="inner-right">
+					<p class="box">{% lorem %}</p>
+				</div>
+			</div>
+		</div>
+
+		<footer id="footer">
+		</footer>
+	</body>
+</html>

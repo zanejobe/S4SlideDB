@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	{% include "head.html" with title="Database" %}
+
+	<body>
+		<h1 id="title">Underwater Landslide Database</h1>
+
+		{% include "navbar.html" %}
+
+		<div id="content">
+			<section class="box">
+				<form id="dataSelector" method="get">
+					<fieldset id="selector">
+						<legend>Search Data</legend>
+						<ul>{{ form.as_ul }}</ul>
+						<input type="submit" value="Submit">
+					</fieldset>
+				</form>
+
+				<button type="button" id="map">View selected data in map</button>
+				<button type="button" id="plot">Plot selected data</button>
+				<button type="button" id="dl">Download selected data as CSV</button>
+
+				<table id="people">
+					<caption>Data Viewer</caption>
+					<thead>
+						<tr>
+							<th><input type="checkbox" value="all"></th>
+							<th>Name</th>
+							<th>Summary</th>
+							<th>Morphometrics</th>
+							<th>Metrics</th>
+							<th>Metadata</th>
+						</tr>
+
+					</thead>
+					<tbody>
+						{% for sum_row, morpho_row, metrics_row, meta_row in data %}
+						{% with id=sum_row.id %}
+						<tr>
+							<td><input type="checkbox" value="{{ id }}"></td>
+							<td>{{ sum_row.name }}</td>
+							<td>
+								<a href="#" onclick="document.getElementById('sum-{{ id }}').style.display = 'block'">View Summary</a>
+								<div class="modal" id="sum-{{ id }}">
+									<div class="modal-content">
+										<span class="close">&times;</span>
+										<code>{{ sum_row|json_script:"" }}</code>
+									</div>
+								</div>
+							</td>
+							<td>
+								<a href="#" onclick="document.getElementById('morpho-{{ id }}').style.display = 'block'">View Morphometrics</a>
+								<div class="modal" id="morpho-{{ id }}">
+									<div class="modal-content">
+										<span class="close">&times;</span>
+										<code>{{ morpho_row|json_script:"" }}</code>
+									</div>
+								</div>
+							</td>
+							<td>
+								<a href="#" onclick="document.getElementById('metrics-{{ id }}').style.display = 'block'">View Metrics</a>
+								<div class="modal" id="metrics-{{ id }}">
+									<div class="modal-content">
+										<span class="close">&times;</span>
+										<code>{{ metrics_row|json_script:"" }}</code>
+									</div>
+								</div>
+							</td>
+							<td>
+								<a href="#" onclick="document.getElementById('meta-{{ id }}').style.display = 'block'">View Metadata</a>
+								<div class="modal" id="meta-{{ id }}">
+									<div class="modal-content">
+										<span class="close">&times;</span>
+										<code>{{ meta_row|json_script:"" }}</code>
+									</div>
+								</div>
+							</td>
+						</tr>
+						{% endwith %}
+						{% endfor %}
+					</tbody>
+				</table>
+			</section>
+		</div>
+
+		<footer id="footer">
+		</footer>
+	</body>
+</html>
