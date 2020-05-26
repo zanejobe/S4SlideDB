@@ -19,8 +19,8 @@ $(() => {
 	});
 
 	$("#plot").click(ev => {
-		window.data = serializeRows;
-		$("#plotFrame".attr("src", "/scatterplot/"));
+		window.data = serializeRows();
+		$("#plotFrame").attr("src", "/plot/"));
 		$("#plotModal").show();
 	});
 
