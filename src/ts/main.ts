@@ -4,7 +4,7 @@ import * as converter from "json-2-csv";
 $(() => {
 	if (location.pathname.includes("viewer")) {
 		$("#selector input:checkbox").prop("disabled", true);
-		$("script").contents().unwrap();
+		$("#people script").contents().unwrap();
 	}
 
 	$(".close").click(hideModal);
@@ -13,6 +13,8 @@ $(() => {
 		$("#people input").prop("checked", $(ev.target).prop("checked")));
 
 	$("#map").click(ev => {
+		$("#mapFrame").attr("src", "/map/");
+		$("#mapModal").show();
 		let landslides: Landslide[] = serializeRows();
 		console.log(landslides);
 	});

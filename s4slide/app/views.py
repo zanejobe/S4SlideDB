@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.views.decorators.clickjacking import xframe_options_sameorigin
 from .forms import databaseSearch
 from .models import *
 
@@ -31,3 +32,6 @@ def viewer(request):
 		data = zip()
 	return render(request, "viewer.html", {"form": form, "data": data})
 
+@xframe_options_sameorigin
+def map(request):
+	return render(request, "map.html");
