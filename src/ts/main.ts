@@ -19,8 +19,9 @@ $(() => {
 	});
 
 	$("#plot").click(ev => {
-		let landslides: Landslide[] = serializeRows();
-		console.log(landslides);
+		window.data = serializeRows;
+		$("#plotFrame".attr("src", "/scatterplot/"));
+		$("#plotModal").show();
 	});
 
 	$("#dl").click(ev =>

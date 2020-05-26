@@ -35,3 +35,7 @@ def viewer(request):
 @xframe_options_sameorigin
 def map(request):
 	return render(request, "map.html");
+
+@xframe_options_sameorigin
+def scatterplot(request):
+	return render(request, "scatterplot.html");

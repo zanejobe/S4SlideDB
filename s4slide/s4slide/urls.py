@@ -26,4 +26,5 @@ urlpatterns = [
     path("people/", views.people),
     path("viewer/", views.viewer),
     path("map/", views.map)
+    path("scatterplot/", views.scatterplot)
 ]
