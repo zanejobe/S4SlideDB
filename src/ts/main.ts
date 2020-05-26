@@ -20,7 +20,7 @@ $(() => {
 
 	$("#plot").click(ev => {
 		window.data = serializeRows();
-		$("#plotFrame").attr("src", "/plot/"));
+		$("#plotFrame").attr("src", "/plot/");
 		$("#plotModal").show();
 	});
 

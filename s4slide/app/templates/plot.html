@@ -1,60 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-	<title>S4Slide: ScatterPlot</title>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<script src="https://d3js.org/d3.v4.js"></script> <!-- Load d3.js -->
-</head>
+	<head>
+		<title>S4Slide: Plot</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<script src="https://d3js.org/d3.v4.js"></script> <!-- Load d3.js -->
+	</head>
 	<body>
-		<div id="my_dataviz"></div>
-		<script>  
-
-
-//dimensions of graph
+		<div id="plotContent"></div>
+		<script>
+// dimensions of graph
 var margin = {top: 10, right: 30, bottom: 30, left: 60},
 	width = 460 - margin.left - margin.right,
 	height = 400 - margin.top - margin.bottom;
 
 // append the svg object to the body of the page
-var svg = d3.select("#my_dataviz")
-  .append("svg")
-    .attr("width", width + margin.left + margin.right)
-    .attr("height", height + margin.top + margin.bottom)
-  .append("g")
-    .attr("transform",
-		  "translate(" + margin.left + "," + margin.top + ")");
-		  //Read the data
-//var slides = parent.data;
-d3.csv("https://raw.githubusercontent.com/holtzy/data_to_viz/master/Example_dataset/2_TwoNum.csv", function(d) {
+var svg = d3.select("#plotContent")
+	.append("svg")
+	.attr("width", width + margin.left + margin.right)
+	.attr("height", height + margin.top + margin.bottom)
+	.append("g")
+	.attr("transform",
+		"translate(" + margin.left + "," + margin.top + ")");
+//Read the data
+var slides = parent.data;
 
 // Add X axis
 var x = d3.scaleLinear()
-  .domain([0, 4000])
-  .range([ 0, width ]);
+	.domain([0, 4000])
+	.range([ 0, width ]);
 svg.append("g")
-  .attr("transform", "translate(0," + height + ")")
-  .call(d3.axisBottom(x));
+	.attr("transform", "translate(0," + height + ")")
+	.call(d3.axisBottom(x));
 
 // Add Y axis
 var y = d3.scaleLinear()
-    .domain([0, 500000])
-    .range([ height, 0]);
-  svg.append("g")
+	.domain([0, 500000])
+	.range([ height, 0]);
+svg.append("g")
 	.call(d3.axisLeft(y));
-	
-//Add dots
-	//for loop, return area and volume there
-svg.append('g')
-	.selectAll("dot")
-	.data(data)
-	.enter()
-	.append("circle")
-		.attr("cx", function (d) { return x(d.GrLivArea); } )
-		.attr("cy", function (d) { return y(d.SalePrice); } )
+
+	// Add dots
+	svg.append('g')
+		.selectAll("dot")
+		.data(slides)
+		.enter()
+		.append("circle")
+		.attr("cx", function(s) { return s.metrics.a; })
+		.attr("cy", function(s) { return s.metrics.v; })
 		.attr("r", 1.5)
-		.style("fill", "#69b3a2")
-})
+		.style("fill", "#69b3a2");
 		</script>
 	</body>
 </html>
