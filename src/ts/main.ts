@@ -13,10 +13,9 @@ $(() => {
 		$("#people input").prop("checked", $(ev.target).prop("checked")));
 
 	$("#map").click(ev => {
+		window.data = serializeRows();
 		$("#mapFrame").attr("src", "/map/");
 		$("#mapModal").show();
-		let landslides: Landslide[] = serializeRows();
-		console.log(landslides);
 	});
 
 	$("#plot").click(ev => {
