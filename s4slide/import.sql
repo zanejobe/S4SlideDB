@@ -4,10 +4,10 @@ Relative pathnames are used, so run it from this directory.
 Usage: sqlite3 -init import.sql db.sqlite3
 */
 
-.shell python manage.py migrate app zero
-.shell del -f app/migrations/????_*.py
-.shell python manage.py makemigrations
-.shell python manage.py migrate
+.shell python3.6 manage.py migrate app zero
+.shell rm -f app/migrations/????_*.py
+.shell python3.6 manage.py makemigrations
+.shell python3.6 manage.py migrate
 
 .mode csv
 .import ../data/sample/summary_info_id.csv app_summary_info_id
