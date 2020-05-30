@@ -3,12 +3,15 @@ import * as converter from "json-2-csv";
 
 $(() => {
 	if (location.pathname.includes("viewer")) {
+		// disable the form checkboxes while they don't do anything
 		$("#selector input:checkbox").prop("disabled", true);
+		// Django wraps JSON data in script tags, so unwrap them
 		$("#people script").contents().unwrap();
 	}
 
 	$(".close").click(hideModal);
 
+	// automatically select/deselect all search result rows
 	$("input[value='all']").change(ev =>
 		$("#people input").prop("checked", $(ev.target).prop("checked")));
 
@@ -24,9 +27,19 @@ $(() => {
 		$("#plotModal").show();
 	});
 
-	$("#dl").click(ev =>
+	$("#dl-csv").click(ev =>
 		converter.json2csv(serializeRows(), createDownload, {
 			expandArrayObjects: true }));
+
+	$("#dl-json").click(ev => {
+		let ele = document.createElement("a");
+		$(ele).attr({
+			"href": "data:application/json;charset=utf-8," +
+				encodeURI(JSON.stringify(serializeRows(), null, "\t")),
+			"download": `s4slide-db-dump-${new Date().toISOString()}.json`
+		});
+		ele.click();
+	});
 });
 
 document.onkeydown = hideModal;
