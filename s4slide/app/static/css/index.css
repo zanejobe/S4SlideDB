@@ -34,7 +34,7 @@ html,body{
 #nav ul li{
 	float: left;
 }
-#nav ul li a, #signOut{
+#nav ul li a{
 	padding: 16px;
 	text-decoration:none;
 }
@@ -45,15 +45,9 @@ html,body{
 #nav ul li a:visited{
 	color: #D6CEC8;
 }
-#nav ul li a:hover, #signOut{
+#nav ul li a:hover{
 	color: white;
 	background-color: #7F7F7F;
-}
-
-#signOut {
-	padding-top: 8px;
-	padding-bottom: 8px;
-	margin-left: 16px;
 }
 /*******************************************************
 					BOXES CONTAINING FORMS
