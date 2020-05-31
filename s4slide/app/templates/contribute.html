@@ -33,9 +33,27 @@
 			</div>
 
 			<div id="right">
-				<div id="inner-right">
-					<p class="box">{% lorem %}</p>
+				<script src="https://apis.google.com/js/platform.js" async defer></script>
+				<div id="inner-right" class="box" style="display:flex">
+					<div class="g-signin2" data-onsuccess="onSignIn"></div>
+					<a id="signOut" href="#" onclick="signOut();" style="display:none">Sign out</a>
 				</div>
+				<script>
+function onSignIn(googleUser) {
+	var profile = googleUser.getBasicProfile();
+	sessionStorage.setItem("id", profile.getId());
+	sessionStorage.setItem("name", profile.getName());
+	sessionStorage.setItem("email", profile.getEmail());
+	document.getElementById("signOut").style.display = "inline";
+}
+
+function signOut() {
+	gapi.auth2.getAuthInstance().signOut().then(function () {
+		sessionStorage.clear();
+		document.getElementById("signOut").style.display = "none";
+	});
+}
+				</script>
 			</div>
 
 		</div>
