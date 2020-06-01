@@ -40,6 +40,21 @@ $(() => {
 		});
 		ele.click();
 	});
+
+	$("#ul-form").submit(ev => {
+		ev.preventDefault();
+		let file = ev.target.childNodes[0].files[0];
+		file.text().then(text =>
+			converter.csv2json(text, processUpload));
+	});
+});
+
+$.ajaxSetup({
+	beforeSend: function (xhr, settings) {
+		if (settings.type === "POST" && !this.crossDomain) {
+			xhr.setRequestHeader("X-CSRFToken", getCookie("csrftoken"));
+		}
+	}
 });
 
 document.onkeydown = hideModal;
@@ -73,6 +88,32 @@ function createDownload(err: Error, csv: string): void {
 		"download": `s4slide-db-dump-${new Date().toISOString()}.csv`
 	});
 	ele.click();
+}
+
+function processUpload(err: Error, array: Landslide[]): void {
+	if (err) return;
+	$.post("/upload/", {
+		data: JSON.stringify(array),
+		name: sessionStorage.getItem("name"),
+		email: sessionStorage.getItem("email")
+	});
+}
+
+// https://docs.djangoproject.com/en/3.0/ref/csrf/#acquiring-the-token-if-csrf-use-sessions-and-csrf-cookie-httponly-are-false
+function getCookie(name: string) {
+	let cookieValue: string = null;
+	if (document.cookie && document.cookie !== '') {
+		const cookies: string[] = document.cookie.split(';');
+		for (let i = 0; i < cookies.length; i++) {
+			let cookie: string = cookies[i].trim();
+			// Does this cookie string begin with the name we want?
+			if (cookie.substring(0, name.length + 1) === (name + '=')) {
+				cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+				break;
+			}
+		}
+	}
+	return cookieValue;
 }
 
 class Landslide {

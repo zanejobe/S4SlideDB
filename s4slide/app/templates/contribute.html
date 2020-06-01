@@ -28,7 +28,7 @@
 				<script src="https://apis.google.com/js/platform.js" async defer></script>
 				<div id="inner-right" class="box">
 					<div class="g-signin2" data-onsuccess="onSignIn"></div>
-					<p style="color:red">Navigating away or reloading will sign you out.</p>
+					<p style="color:red">Navigating away from this page, reloading the page, or closing the page will sign you out.</p>
 				</div>
 				<script>
 function onSignIn(googleUser) {
@@ -37,6 +37,13 @@ function onSignIn(googleUser) {
 	sessionStorage.setItem("id", profile.getId());
 	sessionStorage.setItem("name", profile.getName());
 	sessionStorage.setItem("email", profile.getEmail());
+	var input = document.createElement("input");
+	input.type = "file";
+	input.accept = ".csv,text/csv";
+	input.required = true;
+	var form = document.getElementById("ul-form");
+	form.insertBefore(input, form.childNodes[0]);
+	document.getElementById("ul").style.display = "block";
 }
 
 function signOut() {
@@ -47,6 +54,12 @@ function signOut() {
 
 window.addEventListener("beforeunload", function (ev) { signOut(); });
 				</script>
+				<div id="ul" class="box" style="display:none">
+					<form id="ul-form">
+						<button type="submit">Submit</button>
+					</form>
+					<p style="color:red">By clicking submit, you agree to have your name and email associated with the file upload.</p>
+				</div>
 			</div>
 
 		</div>

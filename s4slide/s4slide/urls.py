@@ -27,4 +27,5 @@ urlpatterns = [
     path("viewer/", views.viewer),
     path("map/", views.map),
     path("plot/", views.plot),
+    path("upload/", views.upload)
 ]

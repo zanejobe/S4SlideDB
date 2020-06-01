@@ -1,7 +1,9 @@
+from django.http import HttpResponse
 from django.shortcuts import render
 from django.views.decorators.clickjacking import xframe_options_sameorigin
 from .forms import databaseSearch
 from .models import *
+import json
 
 def index(request):
 	return render(request, "index.html")
@@ -31,6 +33,11 @@ def viewer(request):
 		form = databaseSearch()
 		data = zip()
 	return render(request, "viewer.html", {"form": form, "data": data})
+
+def upload(request):
+	data = json.loads(request.POST["data"])
+	print(data)
+	return HttpResponse("")
 
 @xframe_options_sameorigin
 def map(request):
