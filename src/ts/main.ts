@@ -32,13 +32,13 @@ $(() => {
 			expandArrayObjects: true }));
 
 	$("#dl-json").click(ev => {
-		let ele = document.createElement("a");
-		$(ele).attr({
+		let downloadLink = document.createElement("a");
+		$(downloadLink).attr({
 			"href": "data:application/json;charset=utf-8," +
 				encodeURI(JSON.stringify(serializeRows(), null, "\t")),
-			"download": `s4slide-db-dump-${new Date().toISOString()}.json`
+			"download": `${createFilename()}.json`
 		});
-		ele.click();
+		downloadLink.click();
 	});
 
 	$("#ul-form").submit(ev => {
@@ -88,12 +88,16 @@ function createDownload(err: Error, csv: string): void {
 		console.log(err);
 		return;
 	}
-	let ele = document.createElement("a");
-	$(ele).attr({
+	let downloadLink = document.createElement("a");
+	$(downloadLink).attr({
 		"href": `data:text/csv;charset=utf-8,${encodeURI(csv)}`,
-		"download": `s4slide-db-dump-${new Date().toISOString()}.csv`
+		"download": `${createFilename()}.csv`
 	});
-	ele.click();
+	downloadLink.click();
+}
+
+function createFilename(): string {
+	return `s4slide-db-dump-${new Date().toISOString()}`;
 }
 
 function processUpload(err: Error, array: any[]): void {
@@ -102,7 +106,7 @@ function processUpload(err: Error, array: any[]): void {
 		return;
 	}
 	array.forEach(val => {
-		let landslide = new Landslide(val.sum, val.morpho, val.metrics, val.meta);
+		let landslide: Landslide = new Landslide(val.sum, val.morpho, val.metrics, val.meta);
 		landslide.removeEmpty();
 	});
 	$.post("/upload/", {
@@ -113,7 +117,7 @@ function processUpload(err: Error, array: any[]): void {
 }
 
 // https://docs.djangoproject.com/en/3.0/ref/csrf/#acquiring-the-token-if-csrf-use-sessions-and-csrf-cookie-httponly-are-false
-function getCookie(name: string) {
+function getCookie(name: string): string {
 	let cookieValue: string = null;
 	if (document.cookie && document.cookie !== '') {
 		const cookies: string[] = document.cookie.split(';');
@@ -142,6 +146,7 @@ class Landslide {
 		this.meta = meta;
 	}
 
+	// remove nested properties that contain no data
 	removeEmpty(): void {
 		for (let table in this) {
 			for (let field in this[table]) {
