@@ -36,7 +36,16 @@ def viewer(request):
 
 def upload(request):
 	data = json.loads(request.POST["data"])
-	print(data)
+	for row in data:
+		summary = summary_info_id(**row["sum"])
+		summary.save()
+		morpho = landslide_morphometrics(**row["morpho"], landslide=summary)
+		morpho.save()
+		metrics = landslide_metrics(**row["metrics"], landslide=summary)
+		metrics.save()
+		meta = meta_table(**row["meta"], landslide=summary,
+				contact_name=request.POST["name"], contact_email=request.POST["email"])
+		meta.save()
 	return HttpResponse("")
 
 @xframe_options_sameorigin

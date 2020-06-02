@@ -44,8 +44,11 @@ $(() => {
 	$("#ul-form").submit(ev => {
 		ev.preventDefault();
 		let file = ev.target.childNodes[0].files[0];
-		file.text().then(text =>
-			converter.csv2json(text, processUpload));
+		file.text().then(text => {
+			// make sure there are LF line endings
+			text = text.replace(/\r\n?/g, "\n");
+			converter.csv2json(text, processUpload);
+		});
 	});
 });
 
@@ -81,7 +84,10 @@ function serializeRows(): Landslide[] {
 }
 
 function createDownload(err: Error, csv: string): void {
-	if (err) return;
+	if (err) {
+		console.log(err);
+		return;
+	}
 	let ele = document.createElement("a");
 	$(ele).attr({
 		"href": `data:text/csv;charset=utf-8,${encodeURI(csv)}`,
@@ -90,8 +96,15 @@ function createDownload(err: Error, csv: string): void {
 	ele.click();
 }
 
-function processUpload(err: Error, array: Landslide[]): void {
-	if (err) return;
+function processUpload(err: Error, array: any[]): void {
+	if (err) {
+		console.log(err);
+		return;
+	}
+	array.forEach(val => {
+		let landslide = new Landslide(val.sum, val.morpho, val.metrics, val.meta);
+		landslide.removeEmpty();
+	});
 	$.post("/upload/", {
 		data: JSON.stringify(array),
 		name: sessionStorage.getItem("name"),
@@ -127,6 +140,16 @@ class Landslide {
 		this.morpho = morpho;
 		this.metrics = metrics;
 		this.meta = meta;
+	}
+
+	removeEmpty(): void {
+		for (let table in this) {
+			for (let field in this[table]) {
+				let val = this[table][field];
+				if (val == "" || val == ",")
+					delete this[table][field];
+			}
+		}
 	}
 }
 
