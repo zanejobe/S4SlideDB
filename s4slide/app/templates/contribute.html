@@ -14,12 +14,13 @@
 					<p>Thank you for showing interest in contributing to the S4Slide Database.
 					If you wish to upload data, you must be signed in with Google.</p>
 					<p>In order to facilitate data storage, file uploads must be in a consistent format.
-					A sample CSV file with the required column headers
+					A CSV template with column headers
 					{% load static %}
 					<a href="{% static "s4slide-db-template.csv" %}" download>can be downloaded here</a>.
 					Please fill them in to the best of your ability. Further details on the schema
 					<a href="https://github.com/zanejobe/S4SlideDB/blob/master/schema/schema.csv">can be found here</a>.</p>
-					<p>Only the latitude and longitude columns are required, all other columns are optional; however, please try to include a name for every row, as this makes database entries easier to search for.</p>
+					<p>Only the latitude and longitude columns are required, all other columns are optional; however, please try to include a name for every row, as this makes database entries easier to search for.
+					Any columns that are completely empty are ignored, and any additional columns that are included will be ignored.</p>
 				</div>
 
 			</div>
