@@ -48,6 +48,11 @@ class landslide_morphometrics (models.Model):
 	st = models.FloatField(null=True)
 	st_notes = models.TextField()
 
+	class Meta:
+		constraints = [
+			models.UniqueConstraint(fields=["latitude", "longitude"], name="unique_latlong")
+		]
+
 class landslide_metrics (models.Model):
 	landslide = models.ForeignKey('summary_info_id', on_delete=models.CASCADE,)
 	attachment = models.BooleanField(null=True)

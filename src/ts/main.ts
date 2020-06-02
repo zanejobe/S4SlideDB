@@ -43,6 +43,7 @@ $(() => {
 
 	$("#ul-form").submit(ev => {
 		ev.preventDefault();
+		$("#ul-status").html("<p>Uploading, please wait...</p>");
 		let file = ev.target.childNodes[0].files[0];
 		file.text().then(text => {
 			// make sure there are LF line endings
@@ -113,7 +114,10 @@ function processUpload(err: Error, array: any[]): void {
 		data: JSON.stringify(array),
 		name: sessionStorage.getItem("name"),
 		email: sessionStorage.getItem("email")
-	});
+	})
+	.done(() => $("#ul-status").html("<p style='color:green'>Upload succeeded!</p>"))
+	// TODO show more detailed error message
+	.fail(() => $("#ul-status").html("<p style='color:red'>Upload failed!</p>"));
 }
 
 // https://docs.djangoproject.com/en/3.0/ref/csrf/#acquiring-the-token-if-csrf-use-sessions-and-csrf-cookie-httponly-are-false
@@ -151,7 +155,7 @@ class Landslide {
 		for (let table in this) {
 			for (let field in this[table]) {
 				let val = this[table][field];
-				if (val == "" || val == ",")
+				if (val === "" || val === ",")
 					delete this[table][field];
 			}
 		}

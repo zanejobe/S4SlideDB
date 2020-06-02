@@ -18,8 +18,8 @@
 					{% load static %}
 					<a href="{% static "s4slide-db-template.csv" %}" download>can be downloaded here</a>.
 					Please fill them in to the best of your ability. Further details on the schema
-					<a href="https://github.com/zanejobe/S4SlideDB/blob/master/schema/schema.csv">
-						can be found here</a>.</p>
+					<a href="https://github.com/zanejobe/S4SlideDB/blob/master/schema/schema.csv">can be found here</a>.</p>
+					<p>Only the latitude and longitude columns are required, all other columns are optional; however, please try to include a name for every row, as this makes database entries easier to search for.</p>
 				</div>
 
 			</div>
@@ -59,6 +59,7 @@ window.addEventListener("beforeunload", function (ev) { signOut(); });
 						<button type="submit">Submit</button>
 					</form>
 					<p style="color:red">By clicking submit, you agree to have your name and email associated with the file upload.</p>
+					<div id="ul-status"></div>
 				</div>
 			</div>
 
