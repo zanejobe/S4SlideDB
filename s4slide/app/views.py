@@ -1,6 +1,7 @@
 from django.http import HttpResponse
 from django.shortcuts import render
 from django.views.decorators.clickjacking import xframe_options_sameorigin
+from django.db import transaction
 from .forms import databaseSearch
 from .models import *
 import json
@@ -34,6 +35,7 @@ def viewer(request):
 		data = zip()
 	return render(request, "viewer.html", {"form": form, "data": data})
 
+@transaction.atomic
 def upload(request):
 	data = json.loads(request.POST["data"])
 	for row in data:
