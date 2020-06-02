@@ -5,7 +5,7 @@ class summary_info_id (models.Model):
 	pid = models.IntegerField(null=True)
 	name = models.TextField()
 	aliases = models.TextField() 
-	frontal_confinement = models.BooleanField()
+	frontal_confinement = models.BooleanField(null=True)
 	TYPE_CHOICES = [
 			("S", "Single"),
 			("M", "Multiple")]
@@ -50,7 +50,7 @@ class landslide_morphometrics (models.Model):
 
 class landslide_metrics (models.Model):
 	landslide = models.ForeignKey('summary_info_id', on_delete=models.CASCADE,)
-	attachment = models.BooleanField()
+	attachment = models.BooleanField(null=True)
 	surf_basal = models.TextField()
 	surf_upper = models.TextField()
 	a = models.FloatField(null=True)
