@@ -57,6 +57,7 @@ window.addEventListener("beforeunload", function (ev) { signOut(); });
 				</script>
 				<div id="ul" class="box" style="display:none">
 					<form id="ul-form">
+						{% csrf_token %}
 						<button type="submit">Submit</button>
 					</form>
 					<p style="color:red">By clicking submit, you agree to have your name and email associated with the file upload.</p>
