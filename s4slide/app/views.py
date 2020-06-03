@@ -18,8 +18,8 @@ def landslide(request):
 def links(request):
 	return render(request, "links.html")
 
-def people(request):
-	return render(request, "people.html")
+def about(request):
+	return render(request, "about.html")
 
 def viewer(request):
 	if len(request.GET) > 0:

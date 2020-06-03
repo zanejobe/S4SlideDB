@@ -23,7 +23,7 @@ urlpatterns = [
     path("contribute/", views.contribute),
     path("landslide/", views.landslide),
     path("links/", views.links),
-    path("people/", views.people),
+    path("about/", views.about),
     path("viewer/", views.viewer),
     path("map/", views.map),
     path("plot/", views.plot),
