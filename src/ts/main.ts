@@ -1,5 +1,17 @@
 import $ from "jquery";
 import * as converter from "json-2-csv";
+// babel needs .ts extension to resolve imports
+// ignore them so type checker doesn't complain
+// @ts-ignore
+import landslide from "./types.ts";
+// @ts-ignore
+import header from "./keys.ts";
+
+declare global {
+	interface Window {
+		data: landslide[];
+	}
+}
 
 $(() => {
 	if (location.pathname.includes("viewer")) {
@@ -32,7 +44,7 @@ $(() => {
 			expandArrayObjects: true }));
 
 	$("#dl-json").click(ev => {
-		let downloadLink = document.createElement("a");
+		let downloadLink: HTMLAnchorElement = document.createElement("a");
 		$(downloadLink).attr({
 			"href": "data:application/json;charset=utf-8," +
 				encodeURI(JSON.stringify(serializeRows(), null, "\t")),
@@ -44,12 +56,12 @@ $(() => {
 	$("#ul-form").submit(ev => {
 		ev.preventDefault();
 		$("#ul-status").html("<p>Uploading, please wait...</p>");
-		let file = ev.target.childNodes[0].files[0];
+		let file: File = (<HTMLInputElement>ev.target.childNodes[0]).files[0];
 		file.text().then(text => {
 			// make sure there are LF line endings
 			text = text.replace(/\r\n?/g, "\n");
 			converter.csv2json(text, processUpload, {
-				keys: ["sum.name","sum.aliases","sum.frontal_confinement","sum.object_type","sum.ss_depth_m","sum.ss_time_twtt","sum.ss_depth_notes","sum.comments","sum.category","morpho.latitude","morpho.longitude","morpho.w_depth_min","morpho.w_depth_max","morpho.w_depth_notes","morpho.lt","morpho.ld","morpho.le","morpho.l_notes","morpho.ls","morpho.hs","morpho.he","morpho.ws","morpho.scarp_surf_nat","morpho.scarp_notes","morpho.wd","morpho.td_max_m","morpho.td_max_twtt","morpho.tu_max_m","morpho.tu_max_twtt","morpho.t_notes","morpho.dep_notes","morpho.ht","morpho.s","morpho.s_notes","morpho.ss","morpho.ss_notes","morpho.st","morpho.st_notes","metrics.attachment","metrics.surf_basal","metrics.surf_upper","metrics.a","metrics.a_notes","metrics.v","metrics.v_notes","metrics.age","metrics.age_error","metrics.age_notes","metrics.features","meta.data_type","meta.data_type_notes","meta.data_source","meta.data_repo","meta.pub","meta.db_notes","meta.data_res_h","meta.data_res_v","meta.notes"],
+				keys: header,
 				trimFieldValues: true
 			});
 		});
@@ -74,17 +86,17 @@ function hideModal(ev): void {
 		$(".modal").hide();
 }
 
-function serializeRows(): Landslide[] {
-	let landslides: Landslide[] = [];
+function serializeRows(): landslide[] {
+	let slides: landslide[] = [];
 	$("#people input[value!='all']:checked").each((ind, ele) => {
 		let num = $(ele).attr("value");
-		let sum: Summary = JSON.parse($(`#sum-${num} code`).text());
-		let morpho: Morphometrics = JSON.parse($(`#morpho-${num} code`).text());
-		let metrics: Metrics = JSON.parse($(`#metrics-${num} code`).text());
-		let meta: Metadata = JSON.parse($(`#meta-${num} code`).text());
-		landslides.push(new Landslide(sum, morpho, metrics, meta));
+		let sum = JSON.parse($(`#sum-${num} code`).text());
+		let morpho = JSON.parse($(`#morpho-${num} code`).text());
+		let metrics = JSON.parse($(`#metrics-${num} code`).text());
+		let meta = JSON.parse($(`#meta-${num} code`).text());
+		slides.push(new landslide(sum, morpho, metrics, meta));
 	});
-	return landslides;
+	return slides;
 }
 
 function createDownload(err: Error, csv: string): void {
@@ -92,7 +104,7 @@ function createDownload(err: Error, csv: string): void {
 		console.log(err);
 		return;
 	}
-	let downloadLink = document.createElement("a");
+	let downloadLink: HTMLAnchorElement = document.createElement("a");
 	$(downloadLink).attr({
 		"href": `data:text/csv;charset=utf-8,${encodeURI(csv)}`,
 		"download": `${createFilename()}.csv`
@@ -110,8 +122,8 @@ function processUpload(err: Error, array: any[]): void {
 		return;
 	}
 	array.forEach(val => {
-		let landslide: Landslide = new Landslide(val.sum, val.morpho, val.metrics, val.meta);
-		landslide.removeEmpty();
+		let slide: landslide = new landslide(val.sum, val.morpho, val.metrics, val.meta);
+		slide.removeEmpty();
 	});
 	$.post("/upload/", {
 		data: JSON.stringify(array),
@@ -140,112 +152,3 @@ function getCookie(name: string): string {
 	return cookieValue;
 }
 
-class Landslide {
-	sum: Summary;
-	morpho: Morphometrics;
-	metrics: Metrics;
-	meta: Metadata;
-
-	constructor(sum: Summary, morpho: Morphometrics, metrics: Metrics, meta: Metadata) {
-		this.sum = sum;
-		this.morpho = morpho;
-		this.metrics = metrics;
-		this.meta = meta;
-	}
-
-	// remove nested properties that contain no data
-	removeEmpty(): void {
-		for (let table in this) {
-			for (let field in this[table]) {
-				let val = this[table][field];
-				if (val === "" || val === ",")
-					delete this[table][field];
-			}
-		}
-	}
-}
-
-interface Summary {
-	id: number;
-	pid: number;
-	name: string;
-	aliases: string;
-	frontal_confinement: boolean;
-	object_type: Type;
-	ss_depth_m: number;
-	ss_time_twtt: number;
-	ss_depth_notes: string;
-	comments: string;
-	category: string;
-}
-
-enum Type {
-	S = "Single",
-	M = "Multiple",
-}
-
-interface Morphometrics {
-	id: number;
-	landslide: number;
-	latitude: number;
-	longitude: number;
-	w_depth_min: number;
-	w_depth_max: number;
-	w_depth_notes: string;
-	lt: number;
-	ld: number;
-	le: number;
-	l_notes: string;
-	ls: number;
-	hs: number;
-	he: number;
-	ws: number;
-	scarp_surf_nat: string;
-	scarp_notes: string;
-	wd: number;
-	td_max_m: number;
-	td_max_twtt: number;
-	tu_max_m: number;
-	tu_max_twtt: number;
-	t_notes: string;
-	dep_notes: string;
-	ht: number;
-	s: number;
-	s_notes: string;
-	ss: number;
-	ss_notes: string;
-	st: number;
-	st_notes: string;
-}
-
-interface Metrics {
-	id: number;
-	landslide: number;
-	attachment: boolean;
-	surf_basal: string;
-	surf_upper: string;
-	a: number;
-	a_notes: string;
-	v: number;
-	v_notes: string;
-	age: string;
-	age_error: number;
-	age_notes: string;
-	features: string;
-}
-
-interface Metadata {
-	id: number;
-	landslide: number;
-	data_type: string;
-	data_type_notes: string;
-	data_source: string;
-	data_repo: string;
-	pub: string;
-	contact_name: string;
-	contact_email: string;
-	db_notes: string;
-	data_res_h: number;
-	data_res_v: number;
-	notes: string;
-}
