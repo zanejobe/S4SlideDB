@@ -17,10 +17,10 @@ https://docs.google.com/presentation/d/1hrxL_wvtDWWL8yOhDuUMt4J_Qua39owmmJgzqqn-
 
 ## Team
 
-| **Zane Jobe**</a> | **Jessy Liao**</a> | **Eric Klatzco**</a> |
-| :---: |:---:| :---:|
-| [![Zane Jobe](https://avatars0.githubusercontent.com/u/37050801?s=200)](https://github.com/zanejobe)    | [![Jessy Liao](https://avatars0.githubusercontent.com/u/31642595?s=200)](https://github.com/jetthyliao) | [![Eric Klatzco](https://avatars3.githubusercontent.com/u/24947614?s=200)](https://github.com/ericklatzco)  |
-| <a href="https://github.com/zanejobe" target="_blank">`github.com/zanejobe`</a> | <a href="https://github.com/jetthyliao" target="_blank">`github.com/jetthyliao`</a> | <a href="https://github.com/ericklatzco" target="_blank">`github.com/ericklatzco`</a> |
+| **Zane Jobe**</a> | **Jessy Liao**</a> | **Eric Klatzco**</a> | **Vlad Muresan**</a> | **Lucas Kitaev**</a> | **Bryanna Gaede**</a> |
+| :---: |:---:| :---:| :---:| :---:| :---:|
+| [![Zane Jobe](https://avatars0.githubusercontent.com/u/37050801?s=200)](https://github.com/zanejobe)    | [![Jessy Liao](https://avatars0.githubusercontent.com/u/31642595?s=200)](https://github.com/jetthyliao) | [![Eric Klatzco](https://avatars3.githubusercontent.com/u/24947614?s=200)](https://github.com/ericklatzco)  | [![Vlad Muresan](https://avatars1.githubusercontent.com/u/54830371?s=200)](https://github.com/imstrobey)  | [![Lucas Kitaev](https://avatars3.githubusercontent.com/u/10089400?s=200)](https://github.com/bobsmith947)  | [![Bryanna Gaede](https://avatars3.githubusercontent.com/u/60149368?s=200)](https://github.com/BryannaGaede)  |
+| <a href="https://github.com/zanejobe" target="_blank">`github.com/zanejobe`</a> | <a href="https://github.com/jetthyliao" target="_blank">`github.com/jetthyliao`</a> | <a href="https://github.com/ericklatzco" target="_blank">`github.com/ericklatzco`</a> | <a href="https://github.com/imstrobey" target="_blank">`github.com/imstrobey`</a> | <a href="https://github.com/bobsmith947" target="_blank">`github.com/bobsmith947`</a> | <a href="https://github.com/BryannaGaede" target="_blank">`github.com/BryannaGaede`</a> |
 
 - You can just grab their GitHub profile image URL
 - You should probably resize their picture using `?s=200` at the end of the image URL.
