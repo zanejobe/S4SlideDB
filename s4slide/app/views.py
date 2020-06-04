@@ -26,6 +26,25 @@ def viewer(request):
 		form = databaseSearch(request.GET)
 		if form.is_valid():
 			sum_qs = summary_info_id.objects.filter(name__contains=request.GET["search"])
+
+			if "age" in request.GET:
+				age_qs = landslide_metrics.objects.filter(age__contains=request.GET["search"])
+				idList = age_qs.values_list('landslide_id', flat=True)
+				secondsum_qs = summary_info_id.objects.filter(id__in=idList)
+				sum_qs = sum_qs | secondsum_qs
+
+			if "loc" in request.GET:
+				loc_qs = summary_info_id.objects.filter(aliases__contains=request.GET["search"])
+				idList = loc_qs.values_list('id', flat=True)
+				secondloc_qs = summary_info_id.objects.filter(id__in=idList)
+				sum_qs = sum_qs | secondloc_qs
+
+			if "cont" in request.GET:
+				cont_qs = meta_table.objects.filter(contact_name__contains=request.GET["search"])
+				idList = cont_qs.values_list('landslide_id', flat=True)
+				secondcont_qs = summary_info_id.objects.filter(id__in=idList)
+				sum_qs = sum_qs | secondcont_qs
+
 			morpho = landslide_morphometrics.objects.filter(landslide__in=sum_qs).values()
 			metrics = landslide_metrics.objects.filter(landslide__in=sum_qs).values()
 			meta = meta_table.objects.filter(landslide__in=sum_qs).values()

@@ -15,8 +15,6 @@ declare global {
 
 $(() => {
 	if (location.pathname.includes("viewer")) {
-		// disable the form checkboxes while they don't do anything
-		$("#selector input:checkbox").prop("disabled", true);
 		// Django wraps JSON data in script tags, so unwrap them
 		$("#people script").contents().unwrap();
 	}
