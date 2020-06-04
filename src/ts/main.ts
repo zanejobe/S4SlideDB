@@ -23,6 +23,9 @@ $(() => {
 
 	$(".close").click(hideModal);
 
+	// tooltip for verified table rows
+	$(".verified").attr("title", "This entry has been verified.");
+
 	// automatically select/deselect all search result rows
 	$("input[value='all']").change(ev =>
 		$("#people input").prop("checked", $(ev.target).prop("checked")));

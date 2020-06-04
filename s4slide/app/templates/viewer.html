@@ -53,7 +53,7 @@
 					<tbody>
 						{% for sum_row, morpho_row, metrics_row, meta_row in data %}
 						{% with id=sum_row.id %}
-						<tr>
+						<tr {% if meta_row.verified %} class="verified" {% endif %}>
 							<td><input type="checkbox" value="{{ id }}"></td>
 							<td>{{ sum_row.name }}</td>
 							<td>

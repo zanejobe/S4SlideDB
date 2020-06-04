@@ -102,7 +102,10 @@ table {
 #people thead{background-color: lightgray;}
 #people tr:nth-child(even){background-color: lightgray;}
 #people tbody tr:hover{
-  	background-color: lightblue;
+  	background-color: lightyellow;
+}
+#people tbody tr.verified:hover{
+	background-color: lightgreen;
 }
 #dataSelector {
   	width:50%;
