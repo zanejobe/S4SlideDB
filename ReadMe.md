@@ -93,42 +93,42 @@ let generateProject = project => {
 
 ## Installation
 
-- All the `code` required to get started
-- Images of what it should look like
+[Django 3.0.x](https://www.djangoproject.com/download/), [Node.js 10+](https://nodejs.org/en/download/), and [sqlite3](https://www.sqlite.org/download.html) are required for this project.
 
 ### Clone
 
-- Clone this repo to your local machine using `https://github.com/fvcproductions/SOMEREPO`
+```
+$ git clone https://github.com/zanejobe/S4SlideDB.git
+$ cd S4SlideDB
+```
 
 ### Setup
 
-- If you want more syntax highlighting, format your code like this:
+> install npm dependencies
 
-> update and install this package first
+`$ npm install`
 
-```shell
-$ brew update
-$ brew install fvcproductions
+> import sample data
+
+```
+$ cd s4slide
+$ sqlite3 -init import.sql db.sqlite3
 ```
 
-> now install npm and bower packages
+> run the development server
 
-```shell
-$ npm install
-$ bower install
+`$ npm start`
+
+> compile `main.ts`
+
+```
+$ npm run type-check
+$ npm run build
 ```
 
-- For all the possible languages that support syntax highlithing on GitHub (which is basically all of them), refer <a href="https://github.com/github/linguist/blob/master/lib/linguist/languages.yml" target="_blank">here</a>.
+> create an account on the admin site
 
----
-
-## Features
-## Usage (Optional)
-## Documentation (Optional)
-## Tests (Optional)
-
-- Going into more detail on code and technologies used
-- I utilized this nifty <a href="https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet" target="_blank">Markdown Cheatsheet</a> for this sample `README`.
+`$ python3 s4slide/manage.py createsuperuser`
 
 ---
 
