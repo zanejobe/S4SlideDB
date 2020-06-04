@@ -6,15 +6,16 @@ class summary_info_id (models.Model):
 	name = models.TextField()
 	aliases = models.TextField() 
 	frontal_confinement = models.BooleanField(null=True)
-	TYPE_CHOICES = [
-			("S", "Single"),
-			("M", "Multiple")]
+	TYPE_CHOICES = [("S", "Single"), ("M", "Multiple")]
 	object_type = models.CharField(max_length=1, choices=TYPE_CHOICES) # TODO check that pid is not null if multiple
 	ss_depth_m = models.FloatField(null=True)
 	ss_time_twtt = models.FloatField(null=True)
 	ss_depth_notes = models.TextField()
 	comments = models.TextField()
 	category = models.TextField()
+
+	def __str__(self):
+		return self.name
 
 class landslide_morphometrics (models.Model):
 	landslide = models.ForeignKey('summary_info_id', on_delete=models.CASCADE,)
@@ -80,4 +81,6 @@ class meta_table (models.Model):
 	data_res_h = models.FloatField(null=True)
 	data_res_v = models.FloatField(null=True)
 	notes = models.TextField()
+	upload_date = models.DateTimeField(auto_now_add=True)
+	verified = models.BooleanField(default=False)
 

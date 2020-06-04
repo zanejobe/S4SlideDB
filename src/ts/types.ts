@@ -106,4 +106,6 @@ interface Metadata {
 	data_res_h: number;
 	data_res_v: number;
 	notes: string;
+	upload_date: Date;
+	verified: boolean;
 }
