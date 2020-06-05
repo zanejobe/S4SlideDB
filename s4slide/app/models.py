@@ -17,6 +17,9 @@ class summary_info_id (models.Model):
 	def __str__(self):
 		return self.name
 
+	class Meta:
+		ordering = ["id"]
+
 class landslide_morphometrics (models.Model):
 	landslide = models.ForeignKey('summary_info_id', on_delete=models.CASCADE,)
 	latitude = models.FloatField()
@@ -53,6 +56,7 @@ class landslide_morphometrics (models.Model):
 		constraints = [
 			models.UniqueConstraint(fields=["latitude", "longitude"], name="unique_latlong")
 		]
+		ordering = ["landslide"]
 
 class landslide_metrics (models.Model):
 	landslide = models.ForeignKey('summary_info_id', on_delete=models.CASCADE,)
@@ -67,6 +71,9 @@ class landslide_metrics (models.Model):
 	age_error = models.FloatField(null=True)
 	age_notes = models.TextField()
 	features = models.TextField()
+
+	class Meta:
+		ordering = ["landslide"]
 
 class meta_table (models.Model):
 	landslide = models.ForeignKey('summary_info_id', on_delete=models.CASCADE,)
@@ -83,4 +90,7 @@ class meta_table (models.Model):
 	notes = models.TextField()
 	upload_date = models.DateTimeField(auto_now_add=True)
 	verified = models.BooleanField(default=False)
+
+	class Meta:
+		ordering = ["landslide"]
 
