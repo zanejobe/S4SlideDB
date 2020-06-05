@@ -77,8 +77,8 @@ $.ajaxSetup({
 	}
 });
 
-document.onkeydown = hideModal;
-window.onclick = hideModal;
+document.addEventListener("keydown", hideModal);
+window.addEventListener("click", hideModal);
 
 function hideModal(ev): void {
 	if (ev.target.className.includes("modal") ||
