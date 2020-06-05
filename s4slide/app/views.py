@@ -25,30 +25,60 @@ def viewer(request):
 	if len(request.GET) > 0:
 		form = databaseSearch(request.GET)
 		if form.is_valid():
-			sum_qs = summary_info_id.objects.filter(name__contains=request.GET["search"])
+			sum_qs = summary_info_id.objects.none()
 
-			if "age" in request.GET:
-				age_qs = landslide_metrics.objects.filter(age__contains=request.GET["search"])
-				idList = age_qs.values_list('landslide_id', flat=True)
-				secondsum_qs = summary_info_id.objects.filter(id__in=idList)
-				sum_qs = sum_qs | secondsum_qs
+			if form.cleaned_data["name"]:
+				name_qs = summary_info_id.objects.filter(name__icontains=form.cleaned_data["name"])
+				idList = name_qs.values_list("id", flat=True)
+				sum_qs |= summary_info_id.objects.filter(id__in=idList)
 
-			if "loc" in request.GET:
-				loc_qs = summary_info_id.objects.filter(aliases__contains=request.GET["search"])
-				idList = loc_qs.values_list('id', flat=True)
-				secondloc_qs = summary_info_id.objects.filter(id__in=idList)
-				sum_qs = sum_qs | secondloc_qs
+			if form.cleaned_data["age"]:
+				age_qs = landslide_metrics.objects.filter(age__icontains=form.cleaned_data["age"])
+				idList = age_qs.values_list("landslide_id", flat=True)
+				sum_qs |= summary_info_id.objects.filter(id__in=idList)
 
-			if "cont" in request.GET:
-				cont_qs = meta_table.objects.filter(contact_name__contains=request.GET["search"])
-				idList = cont_qs.values_list('landslide_id', flat=True)
-				secondcont_qs = summary_info_id.objects.filter(id__in=idList)
-				sum_qs = sum_qs | secondcont_qs
+			if form.cleaned_data["cont"]:
+				cont_qs = meta_table.objects.filter(contact_name__icontains=form.cleaned_data["cont"])
+				idList = cont_qs.values_list("landslide_id", flat=True)
+				sum_qs |= summary_info_id.objects.filter(id__in=idList)
+
+			if form.cleaned_data["lat_start"] and form.cleaned_data["lat_end"]:
+				lat_qs = landslide_morphometrics.objects.filter(latitude__range=(
+					form.cleaned_data["lat_start"],
+					form.cleaned_data["lat_end"]))
+				idList = lat_qs.values_list("landslide_id", flat=True)
+				sum_qs |= summary_info_id.objects.filter(id__in=idList)
+
+			if form.cleaned_data["lng_start"] and form.cleaned_data["lng_end"]:
+				lng_qs = landslide_morphometrics.objects.filter(longitude__range=(
+					form.cleaned_data["lng_start"],
+					form.cleaned_data["lng_end"]))
+				idList = lng_qs.values_list("landslide_id", flat=True)
+				sum_qs |= summary_info_id.objects.filter(id__in=idList)
+
+			if form.cleaned_data["date_start"] and form.cleaned_data["date_end"]:
+				date_qs = meta_table.objects.filter(upload_date__range=(
+					form.cleaned_data["date_start"],
+					form.cleaned_data["date_end"]))
+				idList = date_qs.values_list("landslide_id", flat=True)
+				sum_qs |= summary_info_id.objects.filter(id__in=idList)
+
+			elif form.cleaned_data["date_start"] and not form.cleaned_data["date_end"]:
+				date_qs = meta_table.objects.filter(upload_date__gte=form.cleaned_data["date_start"])
+				idList = date_qs.values_list("landslide_id", flat=True)
+				sum_qs |= summary_info_id.objects.filter(id__in=idList)
+
+			elif not form.cleaned_data["date_start"] and form.cleaned_data["date_end"]:
+				date_qs = meta_table.objects.filter(upload_date__lte=form.cleaned_data["date_end"])
+				idList = date_qs.values_list("landslide_id", flat=True)
+				sum_qs |= summary_info_id.objects.filter(id__in=idList)
 
 			morpho = landslide_morphometrics.objects.filter(landslide__in=sum_qs).values()
 			metrics = landslide_metrics.objects.filter(landslide__in=sum_qs).values()
 			meta = meta_table.objects.filter(landslide__in=sum_qs).values()
 			data = zip(sum_qs.values(), morpho, metrics, meta)
+		else:
+			data = zip()
 	else:
 		form = databaseSearch()
 		data = zip()
