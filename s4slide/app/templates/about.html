@@ -9,15 +9,15 @@
 		{% include "navbar.html" %}
 
 		<div id="content">
-			<section class="box">
-				<table id="about">
+			<div class="box">
+				<table id="people">
 					<caption>All Those Supporting this Site</caption>
 					<thead>
 						<tr>
 							<th>Photo</th>
 							<th>Name</th>
 							<th>Twitter</th>
-							<th>EMail</th>
+							<th>Email</th>
 							<th>Affiliation</th>
 							<th>Contributions</th>
 							<th>ORCID</th>
@@ -32,7 +32,7 @@
 							<td>@quantumegg</td>
 							<td>eklatzco@mines.edu</td>
 							<td>Colorado School of Mines</td>
-							<td>Website Creation</td>
+							<td>Website/Database Design</td>
 							<td>N/A</td>
 							<td>N/A</td>
 						</tr>
@@ -40,9 +40,9 @@
 							<td>N/A</td>
 							<td>Jessy Liao</td>
 							<td>@eh</td>
-							<td>@mines.edu</td>
+							<td>jessyliao@mymail.mines.edu</td>
 							<td>Colorado School of Mines</td>
-							<td>Website Creation</td>
+							<td>Website/Database Design</td>
 							<td>N/A</td>
 							<td>N/A</td>
 						</tr>
@@ -52,9 +52,9 @@
 							<td>N/A</td>
 							<td>lkitaev@mymail.mines.edu</td>
 							<td>Colorado School of Mines</td>
-							<td>Database Creation</td>
-							<td>0123456789</td>
-							<td>9876543210</td>
+							<td>Developer/SysAdmin</td>
+							<td>N/A</td>
+							<td>N/A</td>
 						</tr>
 						<tr>
 							<td>N/A</td>
@@ -62,7 +62,7 @@
 							<td>@Battle_bry</td>
 							<td>bpriddy@mymail.mines.edu</td>
 							<td>Colorado School of Mines</td>
-							<td>Database Creation</td>
+							<td>Developer</td>
 							<td>N/A</td>
 							<td>N/A</td>
 						</tr>
@@ -72,16 +72,23 @@
 							<td>@imstrobey</td>
 							<td>vmuresan@mymail.mines.edu</td>
 							<td>Colorado School of Mines</td>
-							<td>Database Creation</td>
+							<td>Developer</td>
 							<td>N/A</td>
 							<td>N/A</td>
 						</tr>
 					</tbody>
 				</table>
-			</section>
-			<article class="box">
-				<p>The funding for creation of this website was provided by a <a href="https://www.esipfed.org/" target="_blank">Earth Science Information Partners</a> (ESIP) grant to Zane Jobe (view the grant application <a href="https://www.esipfed.org/wp-content/uploads/2019/08/S4Slide-ESIP-Lab-Incubator-Proposal-2019.pdf" target="_blank">here</a>). The front-end and back-end portions of the website were developed at Colorado School of Mines by industrious computer-science students (alphabetically) Brianna Gaede, Eric Klatzco, Lucas Kitaev, Jessy Liao, <a href="https://www.linkedin.com/in/vmuresan/" target="_blank">Vlad Muresan</a>, with minimal oversight by <a href="https://geology.mines.edu/project/jobe-zane/" target="_blank">Zane Jobe</a>.</p>
-			</article>
+			</div>			
+
+			<div class="box">
+				<p>The funding for creation of this website was provided by a <a href="https://www.esipfed.org/" target="_blank">Earth Science Information Partners</a> (ESIP) grant to Zane Jobe (view the <a href="https://www.esipfed.org/wp-content/uploads/2019/08/S4Slide-ESIP-Lab-Incubator-Proposal-2019.pdf" target="_blank">grant application here</a>). The front-end and back-end portions of the website were developed at Colorado School of Mines by industrious computer-science students (alphabetically) Brianna Gaede, Eric Klatzco, Lucas Kitaev, Jessy Liao, <a href="https://www.linkedin.com/in/vmuresan/" target="_blank">Vlad Muresan</a>, with minimal oversight by <a href="https://geology.mines.edu/project/jobe-zane/" target="_blank">Zane Jobe</a>.
+				{% load static %}
+				<img src="{% static "images/goleta_slide_mbari.jpg" %}" alt="Goleta" width="300" height="205" style="float:right"></p>
+
+				<p>The impetus for the creation of this site was the <a href="https://sites.google.com/a/utexas.edu/s4slide/news" target="_blank">2nd Workshop on Subaqueous Landslides and Morphometric Parameters</a> in June 2019 in Golden, CO. A large group of people (see the <a href="https://www.esipfed.org/wp-content/uploads/2019/08/S4Slide-ESIP-Lab-Incubator-Proposal-2019.pdf" target="_blank">list here</a>) worked to form a proposal that was funded by ESIP.</p>
+
+				<p>The format of the database follows that of the peer-reviewed article "<a href="https://doi.org/10.1144/SP477.15" target="_blank">A consistent global approach for the morphometric characterization of subaqueous landslides</a>" by Mike Clare and co-authors. This paper is open-access and can be downloaded from the link above, or in <a href="https://sp.lyellcollection.org/content/specpubgsl/477/1/455.full.pdf" target="_blank">PDF format here</a>.</p>
+			</div>
 		</div>
 
 		<footer id="footer">
