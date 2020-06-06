@@ -4,11 +4,10 @@
 	{% include "head.html" with title="Measurement" %}
 
 	<body>
-		<h1 id="title">Landslide Measurements</h1>
 
 		{% include "navbar.html" %}
 
-		<div id="content">
+		<div id="content" class="box">
 			{% load static %}
 			<img src="{% static "images/ClareEtAlMeasurements.png" %}" alt="Clare et al" width="472" height="796">
 			<p>Example of morphometrics measured from a subaqueous landslide. For more information, please see <a href="https://doi.org/10.1144/SP477.15" target="_blank">this paper</a>.</p>

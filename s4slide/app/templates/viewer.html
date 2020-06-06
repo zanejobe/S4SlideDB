@@ -4,100 +4,97 @@
 	{% include "head.html" with title="Database" %}
 
 	<body>
-		<h1 id="title">Underwater Landslide Database</h1>
 
 		{% include "navbar.html" %}
 
-		<div id="content">
-			<section class="box">
-				<form id="dataSelector" method="get">
-					<fieldset id="selector">
-						<legend>Search Data</legend>
-						<ul>{{ form.as_ul }}</ul>
-						<input type="submit" value="Submit">
-					</fieldset>
-				</form>
+		<div id="content" class="box">
+			<form id="dataSelector" method="get">
+				<fieldset id="selector">
+					<legend>Search Data</legend>
+					<ul>{{ form.as_ul }}</ul>
+					<button type="submit">Submit</button>
+				</fieldset>
+			</form>
 
-				<button type="button" id="map">Map selected data</button>
-				<button type="button" id="plot">Plot selected data</button>
-				<button type="button" id="dl-csv">Download selected data as CSV</button>
-				<button type="button" id="dl-json">Download selected data as JSON</button>
+			<button type="button" id="map">Map selected data</button>
+			<button type="button" id="plot">Plot selected data</button>
+			<button type="button" id="dl-csv">Download selected data as CSV</button>
+			<button type="button" id="dl-json">Download selected data as JSON</button>
 
-				<div class="modal" id="mapModal">
-					<div class="modal-content">
-						<span class="close">&times;</span>
-						<iframe id="mapFrame" src="about:blank" height="500" width="1000"></iframe>
-					</div>
+			<div class="modal" id="mapModal">
+				<div class="modal-content">
+					<span class="close">&times;</span>
+					<iframe id="mapFrame" src="about:blank" height="500" width="1000"></iframe>
 				</div>
-				
-				<div class="modal" id="plotModal">
-					<div class="modal-content">
-						<span class="close">&times;</span>
-						<iframe id="plotFrame" src="about:blank" height="500" width="1000"></iframe>
-					</div>
+			</div>
+
+			<div class="modal" id="plotModal">
+				<div class="modal-content">
+					<span class="close">&times;</span>
+					<iframe id="plotFrame" src="about:blank" height="500" width="1000"></iframe>
 				</div>
+			</div>
 
-				<table id="people">
-					<caption>Data Viewer</caption>
-					<thead>
-						<tr>
-							<th><input type="checkbox" value="all"></th>
-							<th>Name</th>
-							<th>Summary</th>
-							<th>Morphometrics</th>
-							<th>Metrics</th>
-							<th>Metadata</th>
-						</tr>
+			<table id="people">
+				<caption>Data Viewer</caption>
+				<thead>
+					<tr>
+						<th><input type="checkbox" value="all"></th>
+						<th>Name</th>
+						<th>Summary</th>
+						<th>Morphometrics</th>
+						<th>Metrics</th>
+						<th>Metadata</th>
+					</tr>
 
-					</thead>
-					<tbody>
-						{% for sum_row, morpho_row, metrics_row, meta_row in data %}
-						{% with id=sum_row.id %}
-						<tr {% if meta_row.verified %} class="verified" {% endif %}>
-							<td><input type="checkbox" value="{{ id }}"></td>
-							<td>{{ sum_row.name }}</td>
-							<td>
-								<a href="#" onclick="document.getElementById('sum-{{ id }}').style.display = 'block'">View Summary</a>
-								<div class="modal" id="sum-{{ id }}">
-									<div class="modal-content">
-										<span class="close">&times;</span>
-										<code>{{ sum_row|json_script:"" }}</code>
-									</div>
+				</thead>
+				<tbody>
+					{% for sum_row, morpho_row, metrics_row, meta_row in data %}
+					{% with id=sum_row.id %}
+					<tr {% if meta_row.verified %} class="verified" {% endif %}>
+						<td><input type="checkbox" value="{{ id }}"></td>
+						<td>{{ sum_row.name }}</td>
+						<td>
+							<a href="#" onclick="document.getElementById('sum-{{ id }}').style.display = 'block'">View Summary</a>
+							<div class="modal" id="sum-{{ id }}">
+								<div class="modal-content">
+									<span class="close">&times;</span>
+									<code>{{ sum_row|json_script:"" }}</code>
 								</div>
-							</td>
-							<td>
-								<a href="#" onclick="document.getElementById('morpho-{{ id }}').style.display = 'block'">View Morphometrics</a>
-								<div class="modal" id="morpho-{{ id }}">
-									<div class="modal-content">
-										<span class="close">&times;</span>
-										<code>{{ morpho_row|json_script:"" }}</code>
-									</div>
+							</div>
+						</td>
+						<td>
+							<a href="#" onclick="document.getElementById('morpho-{{ id }}').style.display = 'block'">View Morphometrics</a>
+							<div class="modal" id="morpho-{{ id }}">
+								<div class="modal-content">
+									<span class="close">&times;</span>
+									<code>{{ morpho_row|json_script:"" }}</code>
 								</div>
-							</td>
-							<td>
-								<a href="#" onclick="document.getElementById('metrics-{{ id }}').style.display = 'block'">View Metrics</a>
-								<div class="modal" id="metrics-{{ id }}">
-									<div class="modal-content">
-										<span class="close">&times;</span>
-										<code>{{ metrics_row|json_script:"" }}</code>
-									</div>
+							</div>
+						</td>
+						<td>
+							<a href="#" onclick="document.getElementById('metrics-{{ id }}').style.display = 'block'">View Metrics</a>
+							<div class="modal" id="metrics-{{ id }}">
+								<div class="modal-content">
+									<span class="close">&times;</span>
+									<code>{{ metrics_row|json_script:"" }}</code>
 								</div>
-							</td>
-							<td>
-								<a href="#" onclick="document.getElementById('meta-{{ id }}').style.display = 'block'">View Metadata</a>
-								<div class="modal" id="meta-{{ id }}">
-									<div class="modal-content">
-										<span class="close">&times;</span>
-										<code>{{ meta_row|json_script:"" }}</code>
-									</div>
+							</div>
+						</td>
+						<td>
+							<a href="#" onclick="document.getElementById('meta-{{ id }}').style.display = 'block'">View Metadata</a>
+							<div class="modal" id="meta-{{ id }}">
+								<div class="modal-content">
+									<span class="close">&times;</span>
+									<code>{{ meta_row|json_script:"" }}</code>
 								</div>
-							</td>
-						</tr>
-						{% endwith %}
-						{% endfor %}
-					</tbody>
-				</table>
-			</section>
+							</div>
+						</td>
+					</tr>
+					{% endwith %}
+					{% endfor %}
+				</tbody>
+			</table>
 		</div>
 
 		<footer id="footer">
