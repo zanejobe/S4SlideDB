@@ -20,8 +20,34 @@
 					<a href="https://github.com/zanejobe/S4SlideDB/blob/master/schema/schema.csv">can be found here</a>.</p>
 					<p>Only the latitude and longitude columns are required, all other columns are optional; however, please try to include a name for every row, as this makes database entries easier to search for.
 					Any columns that are completely empty are ignored, and any additional columns that are included will be ignored.</p>
-				</div>
 
+					<p>All newly uploaded entries will be marked as unverified by default.
+					An administrator will mark an entry as verified if it is deemed acceptable.
+					Failure to include pertinent data, like an entry name, may result in the entry being removed.
+					Repeated upload of bad data may result in your Google account being banned from this website.</p>
+				</div>
+				<div class="box">
+					<p>Below is a listing of the top contributors to this website. Only verified entries count as contributions.</p>
+					<table id="people">
+						<caption>Website Contributors</caption>
+						<thead>
+							<tr>
+								<th>Number of Contributions</th>
+								<th>Contact Name</th>
+								<th>Contact Email</th>
+							</tr>
+						</thead>
+						<tbody>
+							{% for row in data %}
+							<tr>
+								<td>{{ row.contributions }}</td>
+								<td>{{ row.contact_name }}</td>
+								<td>{{ row.contact_email }}</td>
+							</tr>
+							{% endfor %}
+						</tbody>
+					</table>
+				</div>
 			</div>
 
 			<div id="right">

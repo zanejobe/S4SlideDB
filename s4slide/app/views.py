@@ -2,6 +2,7 @@ from django.http import HttpResponse
 from django.shortcuts import render
 from django.views.decorators.clickjacking import xframe_options_sameorigin
 from django.db import transaction
+from django.db.models import Count
 from .forms import databaseSearch
 from .models import *
 import json
@@ -9,8 +10,13 @@ import json
 def index(request):
 	return render(request, "index.html")
 
+# TODO set up caching for this view
 def contribute(request):
-	return render(request, "contribute.html")
+	# generate a list of contributors
+	# ordering by most (verified) contributions
+	# limit to 100 rows, so it's not too long
+	data = meta_table.objects.filter(verified=True).values("contact_name", "contact_email").annotate(contributions=Count("id")).order_by("-contributions")[:100]
+	return render(request, "contribute.html", {"data": data})
 
 def landslide(request):
 	return render(request, "landslide.html")
@@ -84,6 +90,10 @@ def viewer(request):
 		data = zip()
 	return render(request, "viewer.html", {"form": form, "data": data})
 
+# wrap this view in a transaction
+# if there is an error saving one row
+# none of the rows will be saved
+# and a server error will be generated
 @transaction.atomic
 def upload(request):
 	data = json.loads(request.POST["data"])
