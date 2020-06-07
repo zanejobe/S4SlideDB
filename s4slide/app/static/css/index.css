@@ -19,34 +19,34 @@ html,body{
 /*******************************************************
 					LINK BAR
 *******************************************************/
-#nav{
+nav{
 	/*padding-left: 100px;
 	margin: 0px -10px;*/
 	height: 50px;
 	background-color: #696969;
 }
-#nav ul{
+nav ul{
 	display: inline-block;
 	list-style-type: none;
 	margin: 0px;
 	padding: 16px;
 	overflow: hidden;
 }
-#nav ul li{
+nav ul li{
 	float: left;
 }
-#nav ul li a{
+nav ul li a{
 	padding: 16px;
 	text-decoration:none;
 }
-#nav ul li a:link{
+nav ul li a:link{
 	color: #D6CEC8;
 }
 
-#nav ul li a:visited{
+nav ul li a:visited{
 	color: #D6CEC8;
 }
-#nav ul li a:hover{
+nav ul li a:hover{
 	color: white;
 	background-color: #7F7F7F;
 }
@@ -76,7 +76,7 @@ html,body{
 /*******************************************************
 					FOOTER
 *******************************************************/
-#footer{
+footer{
 	background-color: #696969;
 	color: #D6CEC8;
 	height:48px;
@@ -86,8 +86,12 @@ html,body{
 	left:0;
 }
 
-#footer p {
-	padding-left: 105px;
+footer p {
+	padding: 16px 100px 16px 100px;
+}
+
+footer p a {
+	color: inherit;
 }
 /*******************************************************
 					FOOTER
