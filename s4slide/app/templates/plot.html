@@ -11,8 +11,8 @@
 		<script>
 // https://www.d3-graph-gallery.com/graph/scatter_basic.html
 // dimensions of graph
-var margin = {top: 20, right: 40, bottom: 40, left: 60},
-	width = 460 - margin.left - margin.right,
+var margin = {top: 40, right: 40, bottom: 80, left: 60},
+	width = 800 - margin.left - margin.right,
 	height = 400 - margin.top - margin.bottom;
 
 // append the svg object to the body of the page
@@ -23,72 +23,58 @@ var svg = d3.select("#plotContent")
 	.append("g")
 	.attr("transform",
 		"translate(" + margin.left + "," + margin.top + ")");
-//Read the data
-var slides = parent.data;
 
 // Add X axis
 var x = d3.scaleLog()
 	.domain([10, 100000])
-	.range([ 0, width]);
+	.range([0, width]);
 
-	svg.append("g")
-		.attr("transform", "translate(0," + height + ")")
-		.call(d3.axisBottom(x));
+svg.append("g")
+	.attr("transform", "translate(0," + height + ")")
+	.call(d3.axisBottom(x));
 
-	//text lable for x axis
-	svg.append("text")
-		.attr("transform", "translate(" + width/2 + " ," + (height + margin.top + 20) + ")")
-		.style("text-anchor", "middle")
-		.text("area");
+// X axis label
+svg.append("text")
+	.attr("transform", "translate(" + width/2 + " ," + (height + margin.top + 20) + ")")
+	.style("text-anchor", "middle")
+	.text("area (sq. m)");
 
-	// Add Y axis
-	var y = d3.scaleLog()
-		.domain([10, 100000])
-		.range([ 0, height]);
+// Add Y axis
+var y = d3.scaleLog()
+	.domain([10, 100000])
+	.range([height, 0]);
 
-		svg.append("g")
-			.call(d3.axisLeft(y));
+svg.append("g")
+	.call(d3.axisLeft(y));
 
-	//text lable for y axis
-	svg.append("text")
-		.attr("transform", "rotate(-90)")
-		.attr("y", 0 - margin.left)
-		.attr("x", 0 - (height /2))
-		.attr("dy", "1em")
-		.style("text-anchor", "middle")
-		.text("volume");
+// Y axis label
+svg.append("text")
+	.attr("transform", "rotate(-90)")
+	.attr("y", 0 - margin.left)
+	.attr("x", 0 - (height /2))
+	.attr("dy", "1em")
+	.style("text-anchor", "middle")
+	.text("volume (cu. m)");
 
-		//Add title
-		svg.append("text")
-			.attr("x", (width / 2))
-			.attr("y", 0 - (margin.top / 2))
-			.attr("text-anchor", "middle")
-			.style("font-size", "16px")
-			.style("text-decoration", "underline")
-			.text("Area vs Volume")
+// Add title
+svg.append("text")
+	.attr("x", (width / 2))
+	.attr("y", 0 - (margin.top / 2))
+	.attr("text-anchor", "middle")
+	.style("font-size", "16px")
+	.style("text-decoration", "underline")
+	.text("Volume vs Area")
 
-	// Add dots
-	svg.append('g')
-		.selectAll("dot")
-		.data(slides)
-		.enter()
-		.append("circle")
-		.attr("cx", function(s) { return s.metrics.a; })
-		.attr("cy", function(s) { return s.metrics.v; })
-		.attr("r", 1.5)
-		.style("fill", "#69b3a2");
-
-//add best fit underline
-var data = create_data(1000);
-data.forEach(function(d) {
-	d.x = +d.x;
-	d.y = +d.y;
-	d.yhat = +d.yhat;
-});
-var line = d3.svgLine()
-	.x(function(d) {
-		return x(d.x);
-	})
+// Add dots
+svg.append('g')
+	.selectAll("dot")
+	.data(parent.data)
+	.enter()
+	.append("circle")
+	.attr("cx", function (s) { return s.metrics.a; })
+	.attr("cy", function (s) { return s.metrics.v; })
+	.attr("r", 1.5)
+	.style("fill", "#69b3a2");
 		</script>
 	</body>
 </html>
