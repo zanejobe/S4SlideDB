@@ -100,6 +100,11 @@ def upload(request):
 	for row in data:
 		summary = summary_info_id(**row["sum"])
 		summary.save()
+		# generate a default name if there was none provided
+		# the object needs to be saved first to calculate the id
+		if not summary.name:
+			summary.name = "Landslide {}".format(summary.id)
+			summary.save()
 		morpho = landslide_morphometrics(**row["morpho"], landslide=summary)
 		morpho.save()
 		metrics = landslide_metrics(**row["metrics"], landslide=summary)
