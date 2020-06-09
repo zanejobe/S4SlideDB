@@ -12,8 +12,12 @@
     "type": "git",
     "url": "git+https://github.com/zanejobe/S4SlideDB.git"
   },
-  "author": "",
-  "license": "",
+  "author": "Lucas Kitaev",
+  "contributors": [
+    "Vlad Muresan",
+    "Bryanna Gaede"
+  ],
+  "license": "Apache-2.0",
   "bugs": {
     "url": "https://github.com/zanejobe/S4SlideDB/issues"
   },
