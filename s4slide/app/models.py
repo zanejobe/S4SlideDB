@@ -1,7 +1,6 @@
 from django.db import models
 
-
-class summary_info_id (models.Model):
+class summary_info_id(models.Model):
 	pid = models.IntegerField(null=True)
 	name = models.TextField()
 	aliases = models.TextField() 
@@ -20,8 +19,10 @@ class summary_info_id (models.Model):
 	class Meta:
 		ordering = ["id"]
 
-class landslide_morphometrics (models.Model):
-	landslide = models.ForeignKey('summary_info_id', on_delete=models.CASCADE,)
+class landslide_morphometrics(summary_info_id):
+	landslide = models.OneToOneField(
+			summary_info_id, on_delete=models.CASCADE,
+			parent_link=True, primary_key=True)
 	latitude = models.FloatField()
 	longitude = models.FloatField()
 	w_depth_min = models.FloatField(null=True)
@@ -58,8 +59,10 @@ class landslide_morphometrics (models.Model):
 		]
 		ordering = ["landslide"]
 
-class landslide_metrics (models.Model):
-	landslide = models.ForeignKey('summary_info_id', on_delete=models.CASCADE,)
+class landslide_metrics(summary_info_id):
+	landslide = models.OneToOneField(
+			summary_info_id, on_delete=models.CASCADE,
+			parent_link=True, primary_key=True)
 	attachment = models.BooleanField(null=True)
 	surf_basal = models.TextField()
 	surf_upper = models.TextField()
@@ -75,8 +78,10 @@ class landslide_metrics (models.Model):
 	class Meta:
 		ordering = ["landslide"]
 
-class meta_table (models.Model):
-	landslide = models.ForeignKey('summary_info_id', on_delete=models.CASCADE,)
+class meta_table(summary_info_id):
+	landslide = models.OneToOneField(
+			summary_info_id, on_delete=models.CASCADE,
+			parent_link=True, primary_key=True)
 	data_type = models.TextField(blank=True)
 	data_type_notes = models.TextField(blank=True)
 	data_source = models.TextField(blank=True)
