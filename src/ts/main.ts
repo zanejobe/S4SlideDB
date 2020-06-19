@@ -14,10 +14,8 @@ declare global {
 }
 
 $(() => {
-	if (location.pathname.includes("viewer")) {
-		// Django wraps JSON data in script tags, so unwrap them
-		$("#people script").contents().unwrap();
-	}
+	// Django wraps JSON data in script tags, so unwrap them
+	$("#people script").contents().unwrap();
 
 	$(".close").click(hideModal);
 
