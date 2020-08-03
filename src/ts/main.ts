@@ -14,8 +14,17 @@ declare global {
 }
 
 $(() => {
-	// Django wraps JSON data in script tags, so unwrap them
-	$("#people script").contents().unwrap();
+	// links in the data viewer to show JSON data
+	$("#people a").click(ev => {
+		// the link hash points to the modal to show
+		let dataModal = $(ev.target.hash);
+		let dataCode = dataModal.find("code")[0];
+		// Django wraps JSON data in script tags
+		// unwrap the contents when the user first clicks the link
+		if (dataCode.hasChildNodes())
+			$(dataCode.childNodes[0]).contents().unwrap();
+		dataModal.show();
+	});
 
 	$(".close").click(hideModal);
 

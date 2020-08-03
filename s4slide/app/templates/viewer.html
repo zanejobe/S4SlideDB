@@ -55,7 +55,7 @@
 						<td><input type="checkbox" value="{{ id }}"></td>
 						<td>{{ sum_row.name }}</td>
 						<td>
-							<a href="#" onclick="document.getElementById('sum-{{ id }}').style.display = 'block'">View Summary</a>
+							<a href="#sum-{{ id }}">View Summary</a>
 							<div class="modal" id="sum-{{ id }}">
 								<div class="modal-content">
 									<span class="close">&times;</span>
@@ -64,7 +64,7 @@
 							</div>
 						</td>
 						<td>
-							<a href="#" onclick="document.getElementById('morpho-{{ id }}').style.display = 'block'">View Morphometrics</a>
+							<a href="#morpho-{{ id }}">View Morphometrics</a>
 							<div class="modal" id="morpho-{{ id }}">
 								<div class="modal-content">
 									<span class="close">&times;</span>
@@ -73,7 +73,7 @@
 							</div>
 						</td>
 						<td>
-							<a href="#" onclick="document.getElementById('metrics-{{ id }}').style.display = 'block'">View Metrics</a>
+							<a href="#metrics-{{ id }}">View Metrics</a>
 							<div class="modal" id="metrics-{{ id }}">
 								<div class="modal-content">
 									<span class="close">&times;</span>
@@ -82,7 +82,7 @@
 							</div>
 						</td>
 						<td>
-							<a href="#" onclick="document.getElementById('meta-{{ id }}').style.display = 'block'">View Metadata</a>
+							<a href="#meta-{{ id }}">View Metadata</a>
 							<div class="modal" id="meta-{{ id }}">
 								<div class="modal-content">
 									<span class="close">&times;</span>
