@@ -2,8 +2,8 @@ from django.db import models
 
 class summary_info_id(models.Model):
 	pid = models.IntegerField(null=True)
-	name = models.TextField()
-	aliases = models.TextField() 
+	name = models.CharField(max_length=100)
+	alias = models.CharField(max_length=100)
 	frontal_confinement = models.BooleanField(null=True)
 	TYPE_CHOICES = [("S", "Single"), ("M", "Multiple")]
 	object_type = models.CharField(max_length=1, choices=TYPE_CHOICES) # TODO check that pid is not null if multiple
@@ -11,10 +11,10 @@ class summary_info_id(models.Model):
 	ss_time_twtt = models.FloatField(null=True)
 	ss_depth_notes = models.TextField()
 	comments = models.TextField()
-	category = models.TextField()
+	category = models.CharField(max_length=100)
 
 	def __str__(self):
-		return self.name
+		return self.name + " (" + self.alias + ")"
 
 	class Meta:
 		ordering = ["id"]
@@ -64,14 +64,14 @@ class landslide_metrics(summary_info_id):
 			summary_info_id, on_delete=models.CASCADE,
 			parent_link=True, primary_key=True)
 	attachment = models.BooleanField(null=True)
-	surf_basal = models.TextField()
-	surf_upper = models.TextField()
+	surf_basal = models.CharField(max_length=25)
+	surf_upper = models.TextField(max_length=25)
 	a = models.FloatField(null=True)
 	a_notes = models.TextField()
 	v = models.FloatField(null=True)
 	v_notes = models.TextField()
-	age = models.TextField()
-	age_error = models.FloatField(null=True)
+	age = models.CharField(max_length=50)
+	age_error = models.CharField(max_length=50)
 	age_notes = models.TextField()
 	features = models.TextField()
 
