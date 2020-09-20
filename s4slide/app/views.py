@@ -2,7 +2,7 @@ from django.http import HttpResponse
 from django.shortcuts import render
 from django.views.decorators.clickjacking import xframe_options_sameorigin
 from django.db import transaction
-from django.db.models import Count
+from django.db.models import Count, Q
 from .forms import databaseSearch
 from .models import *
 import json
@@ -15,7 +15,7 @@ def contribute(request):
 	# generate a list of contributors
 	# ordering by most (verified) contributions
 	# limit to 100 rows, so it's not too long
-	data = meta_table.objects.filter(verified=True).values("contact_name", "contact_email").annotate(contributions=Count("id")).order_by("-contributions")[:100]
+	data = meta_table.objects.filter(verified=True).values("contact_name", "contact_email").annotate(contributions=Count("landslide")).order_by("-contributions")[:100]
 	return render(request, "contribute.html", {"data": data})
 
 def landslide(request):
@@ -34,7 +34,8 @@ def viewer(request):
 			sum_qs = summary_info_id.objects.none()
 
 			if form.cleaned_data["name"]:
-				name_qs = summary_info_id.objects.filter(name__icontains=form.cleaned_data["name"])
+				name_qs = summary_info_id.objects.filter(Q(name__icontains=form.cleaned_data["name"]) |
+					Q(alias__icontains=form.cleaned_data["name"]))
 				idList = name_qs.values_list("id", flat=True)
 				sum_qs |= summary_info_id.objects.filter(id__in=idList)
 
@@ -99,18 +100,22 @@ def upload(request):
 	data = json.loads(request.POST["data"])
 	for row in data:
 		summary = summary_info_id(**row["sum"])
+		# summary needs to be saved first to calculate the id
+		summary.full_clean()
 		summary.save()
 		# generate a default name if there was none provided
-		# the object needs to be saved first to calculate the id
 		if not summary.name:
 			summary.name = "Landslide {}".format(summary.id)
 			summary.save()
 		morpho = landslide_morphometrics(**row["morpho"], landslide=summary)
-		morpho.save()
 		metrics = landslide_metrics(**row["metrics"], landslide=summary)
-		metrics.save()
 		meta = meta_table(**row["meta"], landslide=summary,
 				contact_name=request.POST["name"], contact_email=request.POST["email"])
+		morpho.full_clean()
+		metrics.full_clean()
+		meta.full_clean()
+		morpho.save()
+		metrics.save()
 		meta.save()
 	return HttpResponse("")
 
