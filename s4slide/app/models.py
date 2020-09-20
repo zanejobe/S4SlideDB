@@ -31,10 +31,8 @@ class summary_info_id(models.Model):
 	class Meta:
 		ordering = ["id"]
 
-class landslide_morphometrics(summary_info_id):
-	landslide = models.OneToOneField(
-			summary_info_id, on_delete=models.CASCADE,
-			parent_link=True, primary_key=True)
+class landslide_morphometrics(models.Model):
+	landslide = models.OneToOneField(summary_info_id, on_delete=models.CASCADE, primary_key=True)
 	latitude = models.FloatField()
 	longitude = models.FloatField()
 	w_depth_min = models.FloatField(null=True, blank=True)
@@ -71,10 +69,8 @@ class landslide_morphometrics(summary_info_id):
 		]
 		ordering = ["landslide"]
 
-class landslide_metrics(summary_info_id):
-	landslide = models.OneToOneField(
-			summary_info_id, on_delete=models.CASCADE,
-			parent_link=True, primary_key=True)
+class landslide_metrics(models.Model):
+	landslide = models.OneToOneField(summary_info_id, on_delete=models.CASCADE, primary_key=True)
 	attachment = models.BooleanField(null=True, blank=True)
 	surf_basal = models.CharField(max_length=25, blank=True)
 	surf_upper = models.TextField(max_length=25, blank=True)
@@ -90,10 +86,8 @@ class landslide_metrics(summary_info_id):
 	class Meta:
 		ordering = ["landslide"]
 
-class meta_table(summary_info_id):
-	landslide = models.OneToOneField(
-			summary_info_id, on_delete=models.CASCADE,
-			parent_link=True, primary_key=True)
+class meta_table(models.Model):
+	landslide = models.OneToOneField(summary_info_id, on_delete=models.CASCADE, primary_key=True)
 	data_type = models.TextField(blank=True)
 	data_type_notes = models.TextField(blank=True)
 	data_source = models.TextField(blank=True)

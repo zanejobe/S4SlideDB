@@ -15,7 +15,7 @@ def contribute(request):
 	# generate a list of contributors
 	# ordering by most (verified) contributions
 	# limit to 100 rows, so it's not too long
-	data = meta_table.objects.filter(verified=True).values("contact_name", "contact_email").annotate(contributions=Count("id")).order_by("-contributions")[:100]
+	data = meta_table.objects.filter(verified=True).values("contact_name", "contact_email").annotate(contributions=Count("landslide")).order_by("-contributions")[:100]
 	return render(request, "contribute.html", {"data": data})
 
 def landslide(request):
