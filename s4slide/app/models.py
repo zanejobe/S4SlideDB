@@ -4,11 +4,11 @@ from django.core.exceptions import ValidationError
 class summary_info_id(models.Model):
 	# TODO parent is currently unused
 	parent = models.ForeignKey('self', on_delete=models.CASCADE, null=True, blank=True);
-	name = models.CharField(max_length=100, blank=True)
+	name = models.CharField(max_length=100, blank=True, unique=True)
 	alias = models.CharField(max_length=100, blank=True)
 	frontal_confinement = models.BooleanField(null=True, blank=True)
 	TYPE_CHOICES = [("S", "Single"), ("M", "Multiple")]
-	object_type = models.CharField(max_length=1, choices=TYPE_CHOICES, blank=True)
+	object_type = models.CharField(max_length=1, choices=TYPE_CHOICES, blank=True, default="S")
 	ss_depth_m = models.FloatField(null=True, blank=True)
 	ss_time_twtt = models.FloatField(null=True, blank=True)
 	ss_depth_notes = models.TextField(blank=True)
@@ -27,6 +27,8 @@ class summary_info_id(models.Model):
 				raise ValidationError(_("Multiple objects may not reference a parent."))
 			if references < 1:
 				raise ValidationError(_("Multiple objects must have one or more references as a parent."))
+		if self.object_type == "":
+				self.object_type = summary_info_id._meta.get_field("object_type").get_default()
 
 	class Meta:
 		ordering = ["id"]
@@ -73,7 +75,7 @@ class landslide_metrics(models.Model):
 	landslide = models.OneToOneField(summary_info_id, on_delete=models.CASCADE, primary_key=True)
 	attachment = models.BooleanField(null=True, blank=True)
 	surf_basal = models.CharField(max_length=25, blank=True)
-	surf_upper = models.TextField(max_length=25, blank=True)
+	surf_upper = models.CharField(max_length=25, blank=True)
 	a = models.FloatField(null=True, blank=True)
 	a_notes = models.TextField(blank=True)
 	v = models.FloatField(null=True, blank=True)
@@ -88,7 +90,7 @@ class landslide_metrics(models.Model):
 
 class meta_table(models.Model):
 	landslide = models.OneToOneField(summary_info_id, on_delete=models.CASCADE, primary_key=True)
-	data_type = models.TextField(blank=True)
+	data_type = models.CharField(max_length=50, blank=True)
 	data_type_notes = models.TextField(blank=True)
 	data_source = models.TextField(blank=True)
 	data_repo = models.TextField(blank=True)
