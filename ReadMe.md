@@ -15,6 +15,10 @@ https://docs.google.com/presentation/d/1hrxL_wvtDWWL8yOhDuUMt4J_Qua39owmmJgzqqn-
 - S4Slide webpage https://sites.google.com/a/utexas.edu/s4slide/
 - This project sponsored by ESIP https://www.esipfed.org
 
+
+## DATA TO ADD
+- Gamboa new paper https://osf.io/s96rw/
+
 ---
 
 ## Table of Contents
