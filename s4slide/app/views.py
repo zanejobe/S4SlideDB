@@ -87,8 +87,19 @@ def viewer(request):
 		else:
 			data = zip()
 	else:
+		'''
+		Displaying all data by default now
+		'''
 		form = databaseSearch()
-		data = zip()
+		sum_qs = summary_info_id.objects.all()
+		morpho = landslide_morphometrics.objects.filter(landslide__in=sum_qs).values()
+		metrics = landslide_metrics.objects.filter(landslide__in=sum_qs).values()
+		meta = meta_table.objects.filter(landslide__in=sum_qs).values()
+		data = zip(sum_qs.values(), morpho, metrics, meta)
+
+		'''form = databaseSearch()
+		data = zip()'''
+
 	return render(request, "viewer.html", {"form": form, "data": data})
 
 # wrap this view in a transaction
