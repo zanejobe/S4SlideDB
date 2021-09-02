@@ -1,80 +1,62 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<title>S4Slide: Plot</title>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<script src="https://d3js.org/d3.v4.js"></script> <!-- Load d3.js -->
-	</head>
-	<body>
-		<div id="plotContent"></div>
-		<script>
-// https://www.d3-graph-gallery.com/graph/scatter_basic.html
-// dimensions of graph
-var margin = {top: 40, right: 40, bottom: 80, left: 60},
-	width = 800 - margin.left - margin.right,
-	height = 400 - margin.top - margin.bottom;
 
-// append the svg object to the body of the page
-var svg = d3.select("#plotContent")
-	.append("svg")
-	.attr("width", width + margin.left + margin.right)
-	.attr("height", height + margin.top + margin.bottom)
-	.append("g")
-	.attr("transform",
-		"translate(" + margin.left + "," + margin.top + ")");
+<head>
+	<title>S4Slide: Plot</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
 
-// Add X axis
-var x = d3.scaleLog()
-	.domain([10, 100000])
-	.range([0, width]);
+<body>
+	<div id="plotContent"></div>
+	<script>
+		let areas = [];
+		let volumes = [];
+		for (let data of parent.data) {
+			let area = data.metrics.a;
+			let volume = data.metrics.v;
+			if (area != "" && volume != "") {
+				areas.push(area);
+				volumes.push(volume);
+			}
+		}
 
-svg.append("g")
-	.attr("transform", "translate(0," + height + ")")
-	.call(d3.axisBottom(x));
+		var data = [{
+			x: areas,
+			y: volumes,
+			mode: 'markers',
+			type: 'scatter'
+		}];
 
-// X axis label
-svg.append("text")
-	.attr("transform", "translate(" + width/2 + " ," + (height + margin.top + 20) + ")")
-	.style("text-anchor", "middle")
-	.text("area (sq. m)");
+		var layout = {
+			title: {
+				text: 'Area vs Volume (Log scale)',
+				xref: 'paper',
+				x: 0.05,
+			},
+			xaxis: {
+				type: 'log',
+				tickMode: 'linear',
+				dtick: '1',
+				title: {
+					text: 'Area (sq. m)',
+				},
+			},
+			yaxis: {
+				type: 'log',
+				tickMode: 'linear',
+				dtick: '1',
+				title: {
+					text: 'Volume (cu. m)',
+				}
+			}
+		};
 
-// Add Y axis
-var y = d3.scaleLog()
-	.domain([10, 100000])
-	.range([height, 0]);
+		// put plot in div
+		Plotly.newPlot('plotContent', data, layout);
 
-svg.append("g")
-	.call(d3.axisLeft(y));
+	</script>
+</body>
 
-// Y axis label
-svg.append("text")
-	.attr("transform", "rotate(-90)")
-	.attr("y", 0 - margin.left)
-	.attr("x", 0 - (height /2))
-	.attr("dy", "1em")
-	.style("text-anchor", "middle")
-	.text("volume (cu. m)");
-
-// Add title
-svg.append("text")
-	.attr("x", (width / 2))
-	.attr("y", 0 - (margin.top / 2))
-	.attr("text-anchor", "middle")
-	.style("font-size", "16px")
-	.style("text-decoration", "underline")
-	.text("Volume vs Area")
-
-// Add dots
-svg.append('g')
-	.selectAll("dot")
-	.data(parent.data)
-	.enter()
-	.append("circle")
-	.attr("cx", function (s) { return s.metrics.a; })
-	.attr("cy", function (s) { return s.metrics.v; })
-	.attr("r", 1.5)
-	.style("fill", "#69b3a2");
-		</script>
-	</body>
 </html>
