@@ -39,7 +39,7 @@
 				<caption>Data Viewer</caption>
 				<thead>
 					<tr>
-						<th><input type="checkbox" value="all"></th>
+						<th><input type="checkbox" value="all" id="checkAll" disabled></th>
 						<th>Name</th>
 						<th>Summary</th>
 						<th>Morphometrics</th>
@@ -93,6 +93,9 @@
 					</tr>
 					{% endwith %}
 					{% endfor %}
+					<script>
+						document.getElementById("checkAll").disabled = false;
+					</script>
 				</tbody>
 			</table>
 		</div>
