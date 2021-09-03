@@ -13,27 +13,33 @@
 	<script>
 		let areas = [];
 		let volumes = [];
+		let hovers = [];
 		for (let data of parent.data) {
+			console.log(data)
 			let area = data.metrics.a;
 			let volume = data.metrics.v;
+			let hover = data.sum.name;
 			if (area != "" && volume != "") {
 				areas.push(area);
 				volumes.push(volume);
+				hovers.push(hover);
 			}
 		}
+		console.log(hovers);
+		console.log(areas);
 
 		var data = [{
 			x: areas,
 			y: volumes,
+			text: hovers,
 			mode: 'markers',
 			type: 'scatter'
 		}];
 
 		var layout = {
+			hovermode: 'closest',
 			title: {
 				text: 'Area vs Volume (Log scale)',
-				xref: 'paper',
-				x: 0.05,
 			},
 			xaxis: {
 				type: 'log',
